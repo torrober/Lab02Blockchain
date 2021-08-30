@@ -40,13 +40,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tRTextField1" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="tRButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tROutlineButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tRTextField1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="tRButton1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tROutlineButton1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="104" max="32767" attributes="0"/>
@@ -63,7 +66,9 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="tRTextField1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="131" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -72,15 +77,32 @@
         <Component class="Components.TRButton" name="tRButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="tRButton1"/>
+            <Property name="borderRadius" type="int" value="5"/>
           </Properties>
         </Component>
         <Component class="Components.TROutlineButton" name="tROutlineButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="tROutlineButton1"/>
+            <Property name="borderRadius" type="int" value="5"/>
           </Properties>
         </Component>
         <Component class="Components.TRTextField" name="tRTextField1">
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="Components.TRTextArea" name="tRTextArea1">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
