@@ -47,7 +47,6 @@ public class TROutlineButton extends JButton {
         setForeground(borderColor);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setFont(new Font("Segoe UI", Font.PLAIN, 18));
-        System.out.println(this.getText());
         addMouseListener(new MouseAdapter() {
 
             @Override

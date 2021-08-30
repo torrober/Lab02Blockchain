@@ -48,7 +48,6 @@ public class TRButton extends JButton {
         setFont(new Font("Segoe UI", Font.PLAIN, 18));
         setBorderPainted(false);
         setContentAreaFilled(false);
-        System.out.println(this.getText());
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {

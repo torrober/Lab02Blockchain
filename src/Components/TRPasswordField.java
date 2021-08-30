@@ -21,16 +21,17 @@ import javax.swing.border.EmptyBorder;
 public class TRPasswordField extends JPasswordField {
 
     int borderRadius = 0;
-    String placeholder = "placeholder"; 
+    String placeholder = "placeholder";
 
     public TRPasswordField() {
         setBackground(new Color(255, 255, 255, 0));
         setOpaque(false);
         setBorder(new EmptyBorder(10, 10, 10, 50));
+        requestFocusInWindow();
         addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (getText().equals(placeholder)) {
+                if (getText().equals(getPlaceholder())) {
                     setText("");
                 }
             }
@@ -53,6 +54,7 @@ public class TRPasswordField extends JPasswordField {
         g2.setColor(Color.white);
         g2.fillRoundRect(0, 0, width, height, this.borderRadius, this.borderRadius);
         super.paintComponent(g);
+
     }
 
     ;
