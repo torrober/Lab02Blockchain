@@ -48,6 +48,7 @@ public class JTestFrame extends javax.swing.JFrame {
         tRShadowPane3 = new Components.TRShadowPane();
         tRShadowPane4 = new Components.TRShadowPane();
         tRShadowPane5 = new Components.TRShadowPane();
+        tRShadowPane7 = new Components.TRShadowPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -55,7 +56,7 @@ public class JTestFrame extends javax.swing.JFrame {
         setUndecorated(true);
 
         tRShadowPane6.setBackground(new java.awt.Color(255, 255, 255));
-        tRShadowPane6.setBorderRadius(30);
+        tRShadowPane6.setBorderRadius(10);
         tRShadowPane6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 tRShadowPane6MouseDragged(evt);
@@ -81,17 +82,18 @@ public class JTestFrame extends javax.swing.JFrame {
         );
         tRShadowPane1Layout.setVerticalGroup(
             tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tRShadowPane2.setBackground(new java.awt.Color(225, 225, 255));
+        tRShadowPane2.setBackground(new java.awt.Color(245, 127, 23));
         tRShadowPane2.setBorderRadius(30);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Slider");
 
         javax.swing.GroupLayout tRShadowPane2Layout = new javax.swing.GroupLayout(tRShadowPane2);
@@ -198,25 +200,44 @@ public class JTestFrame extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
+        tRShadowPane7.setBackground(new java.awt.Color(245, 127, 23));
+        tRShadowPane7.setBorderRadius(30);
+
+        javax.swing.GroupLayout tRShadowPane7Layout = new javax.swing.GroupLayout(tRShadowPane7);
+        tRShadowPane7.setLayout(tRShadowPane7Layout);
+        tRShadowPane7Layout.setHorizontalGroup(
+            tRShadowPane7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        tRShadowPane7Layout.setVerticalGroup(
+            tRShadowPane7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout tRShadowPane6Layout = new javax.swing.GroupLayout(tRShadowPane6);
         tRShadowPane6.setLayout(tRShadowPane6Layout);
         tRShadowPane6Layout.setHorizontalGroup(
             tRShadowPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tRShadowPane6Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(tRShadowPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(tRShadowPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tRShadowPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tRShadowPane7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         tRShadowPane6Layout.setVerticalGroup(
             tRShadowPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tRShadowPane6Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(tRShadowPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tRShadowPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tRShadowPane6Layout.createSequentialGroup()
+                        .addComponent(tRShadowPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tRShadowPane7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -294,5 +315,6 @@ public class JTestFrame extends javax.swing.JFrame {
     private Components.TRShadowPane tRShadowPane4;
     private Components.TRShadowPane tRShadowPane5;
     private Components.TRShadowPane tRShadowPane6;
+    private Components.TRShadowPane tRShadowPane7;
     // End of variables declaration//GEN-END:variables
 }
