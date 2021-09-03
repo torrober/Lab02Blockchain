@@ -5,7 +5,7 @@
  */
 package lab01blockchain;
 
-import Components.JTestFrame;
+import ComponentesUI.JTestFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -33,8 +33,6 @@ public class Lab01Blockchain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JTestFrame j = new JTestFrame();
-        j.setVisible(true);
     }
     
 }
