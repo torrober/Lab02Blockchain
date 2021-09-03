@@ -10,7 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
+import Estructura.Arbol;
+import Estructura.Nodo;
 /**
  *
  * @author guest
@@ -33,6 +34,20 @@ public class Lab01Blockchain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Arbol a = new Arbol();
+        a.setRaiz(new Nodo("0"));
+        Nodo n = a.getRaiz();
+        a.insertarhijo(n, "1", "0");
+        a.insertarhijo(n, "2", "0");
+        a.insertarhijo(n, "3", "0");
+        
+        a.insertarhijo(n, "1.1", "1");
+        a.insertarhijo(n, "1.2", "1");
+        
+        a.insertarhijo(n, "2.1", "2");
+        a.insertarhijo(n, "2.2", "2");
+        
+        a.recorrido(a.getRaiz());
     }
     
 }
