@@ -12,5 +12,5 @@ package Objetos;
  * @author usuario
  */
 public enum TipoDoc {
-    cedCiudadania,TarjetaIdentidad,Pasaporte,cedExtranjeria
+    cedCiudadania,TarjetaIdentidad,Pasaporte,cedExtranjeria,registroCivil
 }

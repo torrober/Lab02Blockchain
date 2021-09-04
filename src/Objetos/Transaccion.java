@@ -17,10 +17,10 @@ public class Transaccion {
     Usuario remitente,destinatario;
     long timestamp;
     String ip,lugar;
-    double latitud,longitud;
-    ArrayList<Usuario> losUsuarios;
+    double latitud,longitud,monto;
+    ArrayList<Cuenta> lasCuentas;
 
-    public Transaccion(Usuario remitente, Usuario destinatario, long timestamp, String ip, String lugar, double latitud, double longitud, ArrayList<Usuario> losUsuarios) {
+    public Transaccion(Usuario remitente, Usuario destinatario, long timestamp, String ip, String lugar, double latitud, double longitud, ArrayList<Cuenta> lasCuentas) {
         this.remitente = remitente;
         this.destinatario = destinatario;
         this.timestamp = timestamp;
@@ -28,7 +28,7 @@ public class Transaccion {
         this.lugar = lugar;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.losUsuarios = losUsuarios;
+        this.lasCuentas = lasCuentas;
     }
 
     public Usuario getRemitente() {
@@ -87,13 +87,19 @@ public class Transaccion {
         this.longitud = longitud;
     }
 
-    public ArrayList<Usuario> getLosUsuarios() {
-        return losUsuarios;
+    public double getMonto() {
+        return monto;
     }
 
-    public void setLosUsuarios(ArrayList<Usuario> losUsuarios) {
-        this.losUsuarios = losUsuarios;
+    public void setMonto(double monto) {
+        this.monto = monto;
     }
-    
-    
+
+    public ArrayList<Cuenta> getLasCuentas() {
+        return lasCuentas;
+    }
+
+    public void setLasCuentas(ArrayList<Cuenta> lasCuentas) {
+        this.lasCuentas = lasCuentas;
+    }  
 }
