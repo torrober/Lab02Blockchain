@@ -6,8 +6,10 @@
 package ComponentesUI;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -26,21 +28,6 @@ public class TRTextArea extends JTextArea {
         setBackground(new Color(255, 255, 255, 0));
         setOpaque(false);
         setBorder(null);
-        addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (getText().equals(placeholder)) {
-                    setText("");
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (getText().equals("")) {
-                    setText(placeholder);
-                }
-            }
-        });
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -52,7 +39,6 @@ public class TRTextArea extends JTextArea {
         g2.fillRoundRect(0, 0, width, height, this.borderRadius, this.borderRadius);
         super.paintComponent(g);
     }
-
 
     public void setBorderRadius(int borderRadius) {
         this.borderRadius = borderRadius;

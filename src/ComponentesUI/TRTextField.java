@@ -6,8 +6,10 @@
 package ComponentesUI;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -29,21 +31,19 @@ public class TRTextField extends JTextField {
         setBackground(new Color(255, 255, 255, 0));
         setOpaque(false);
         setBorder(new EmptyBorder(10, 10, 10, 50));
-        addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (getText().equals(placeholder)) {
-                    setText("");
-                }
-            }
+    }
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (getText().equals("")) {
-                    setText(placeholder);
-                }
-            }
-        });
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        if (getText().length() == 0) {
+            int h = getHeight();
+            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            Insets ins = getInsets();
+            FontMetrics fm = g.getFontMetrics();
+            g.setColor(new Color(200, 200, 200));
+            g.drawString(this.placeholder, ins.left, h / 2 + fm.getAscent() / 2 - 2);
+        }
     }
 
     @Override

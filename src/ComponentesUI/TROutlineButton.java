@@ -88,9 +88,7 @@ public class TROutlineButton extends JButton {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(borderColor);
-        g2.fillRoundRect(0, 0, width, height, this.borderRadius, this.borderRadius);
-        g2.setColor(getBackground());
-        g2.fillRoundRect(2, 2, width - 2 * 2, height - 2 * 2, this.borderRadius, this.borderRadius);
+        g2.drawRoundRect(0, 0, width - 1, height - 1, this.borderRadius, this.borderRadius);
         super.paintComponent(g);
         if (pressedPoint != null) {
             g2.setColor(Color.WHITE);

@@ -5,6 +5,7 @@
  */
 package lab01blockchain;
 
+import ComponentesUI.TestFrame;
 import UI.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,8 @@ public class Lab01Blockchain {
         }
         MainWindow m = new MainWindow();
         m.setVisible(true);
+        //TestFrame t = new TestFrame();
+        //t.setVisible(true);
     }
     
 }
