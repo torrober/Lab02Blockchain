@@ -13,39 +13,43 @@ import Objetos.Usuario;
  * @author usuario
  */
 public class Nodo {
-
-    Usuario usuario;
-    Transaccion transaccion;
     String dato;
+    Object info[];
     int numHijos;
     Nodo hijos[];
-    Nodo hijosAux[];
 
     public Nodo(String dato) {
-      this.dato=dato;
-      this.numHijos=0;
-    }
-    
-    public Nodo(Usuario user) {
-        this.usuario=user;
-        this.numHijos=0;
-    }
-
-    public Nodo(Transaccion transaccion) {
-        this.transaccion = transaccion;
+        this.dato = dato;
         this.numHijos = 0;
     }
-            
-    public Usuario getUsuario() {
-        return usuario;
+
+    public Nodo(Object[] info, int numHijos) {
+        this.info = info;
+        this.numHijos = 0;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public Object[] getInfo() {
+        return info;
     }
 
-    public Transaccion getTransaccion() {
-        return transaccion;
+    public void setInfo(Object[] info) {
+        this.info = info;
+    }
+
+    public int getNumHijos() {
+        return numHijos;
+    }
+
+    public void setNumHijos(int numHijos) {
+        this.numHijos = numHijos;
+    }
+
+    public Nodo[] getHijos() {
+        return hijos;
+    }
+
+    public void setHijos(Nodo[] hijos) {
+        this.hijos = hijos;
     }
 
     public String getDato() {
@@ -56,21 +60,20 @@ public class Nodo {
         this.dato = dato;
     }
 
-    public void setTransaccion(Transaccion transaccion) {
-        this.transaccion = transaccion;
-    }
-
-    public void temp() {
+    public Nodo[] temp() {
+        Nodo hijosAux[];
         hijosAux = new Nodo[numHijos + 1];
         for (int i = 0; i < this.numHijos; i++) {
             hijosAux[i] = hijos[i];
         }
+        return hijosAux;
     }
 
     public void aumentarHijos(Nodo a) {
-        temp();
-        hijosAux[this.numHijos] = a;
-        hijos = hijosAux;
+        Nodo aux[];
+        aux = temp();
+        aux[this.numHijos] = a;
+        hijos = aux;
         this.numHijos++;
     }
 
