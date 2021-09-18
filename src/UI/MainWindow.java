@@ -77,7 +77,7 @@ public class MainWindow extends javax.swing.JFrame {
         setUndecorated(true);
 
         tRShadowPane6.setBackground(new java.awt.Color(255, 255, 255));
-        tRShadowPane6.setBorderRadius(10);
+        tRShadowPane6.setBorderRadius(30);
         tRShadowPane6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 tRShadowPane6MouseDragged(evt);

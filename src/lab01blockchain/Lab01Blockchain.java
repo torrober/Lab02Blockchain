@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import Estructura.Arbol;
 import Estructura.Nodo;
+import UI.Login;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 /**
@@ -31,7 +32,7 @@ public class Lab01Blockchain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        MainWindow m = new MainWindow();
+        Login m = new Login();
         m.setVisible(true);
         //TestFrame t = new TestFrame();
         //t.setVisible(true);
