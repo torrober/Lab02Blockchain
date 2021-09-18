@@ -5,6 +5,8 @@
  */
 package Estructura;
 
+import java.util.Vector;
+
 /**
  *
  * @author usuario
@@ -25,27 +27,65 @@ public class Arbol {
         this.raiz = raiz;
     }
 
-    public void insertarhijo(Nodo a, String dato, String r) {
-        Nodo nuevo = new Nodo(dato);
-        if (a.getDato().equals(r)) {
+    public void insertarUsuario(Nodo a, String dato, Nodo r) {
+        NodoUsuario nuevo = new NodoUsuario(dato);
+        if (a == r) {
             a.aumentarHijos(nuevo);
         } else {
             for (int i = 0; i < a.numHijos; i++) {
-                if (a.hijos[i].getDato().equals(r)) {
+                if (a.hijos[i] == (r)) {
                     a.hijos[i].aumentarHijos(nuevo);
                 } else {
-                    insertarhijo(a.hijos[i], dato, r);
+                    insertarUsuario(a.hijos[i], dato, r);
                 }
             }
         }
+    }
 
+    public void insertarTransaccion(Nodo a, String dato, Nodo r) {
+        NodoTransaccion nuevo = new NodoTransaccion(dato);
+        if (a == r) {
+            if (a.numHijos < 3) {
+                a.aumentarHijos(nuevo);
+            }
+        } else {
+            for (int i = 0; i < a.numHijos; i++) {
+                if (a.hijos[i] == (r)) {
+                    if (a.hijos[i].numHijos > 3) {
+                        a.hijos[i].aumentarHijos(nuevo);
+                    } else {
+                        Nodo bloque = new Nodo();
+                        bloque.aumentarHijos(nuevo);
+                        a.hijos[i].aumentarHijos(bloque);
+                    }
+                } else {
+                    insertarTransaccion(a.hijos[i], dato, r);
+                }
+            }
+        }
+    }
+
+    public void insertarEstado(Nodo a, NodoTransaccion t) {
+        NodoEstado antes = new NodoEstado();
+        NodoEstado despues = new NodoEstado();
+        if (a == t) {
+            a.aumentarHijos(antes);
+            a.aumentarHijos(despues);
+        } else {
+            for (int i = 0; i < a.numHijos; i++) {
+                if (a.hijos[i] == (t)) {
+                    a.hijos[i].aumentarHijos(antes);
+                    a.hijos[i].aumentarHijos(despues);
+                } else {
+                    insertarEstado(a.hijos[i], t);
+                }
+            } 
+        }
     }
 
     public void recorrido(Nodo raiz) {
         for (int i = 0; i < raiz.numHijos; i++) {
-            System.out.println(raiz.hijos[i].getDato()+ " ");
             recorrido(raiz.hijos[i]);
         }
     }
-
 }

@@ -25,7 +25,7 @@ public class Lab01Blockchain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
+       try {
             // TODO code application logic here
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException ex) {
@@ -35,6 +35,8 @@ public class Lab01Blockchain {
         m.setVisible(true);
         //TestFrame t = new TestFrame();
         //t.setVisible(true);
+
+
     }
     
 }

@@ -14,38 +14,40 @@ import java.util.ArrayList;
  * @author usuario
  */
 public class Transaccion {
-    Usuario remitente,destinatario;
     long timestamp;
-    String ip,lugar;
+    String remitente,destinatario,ip,lugar;
     double latitud,longitud,monto;
     ArrayList<Cuenta> lasCuentas;
 
-    public Transaccion(Usuario remitente, Usuario destinatario, long timestamp, String ip, String lugar, double latitud, double longitud, ArrayList<Cuenta> lasCuentas) {
+    public Transaccion(long timestamp, String remitente, String destinatario, String ip, String lugar, double latitud, double longitud, double monto, ArrayList<Cuenta> lasCuentas) {
+        this.timestamp = timestamp;
         this.remitente = remitente;
         this.destinatario = destinatario;
-        this.timestamp = timestamp;
         this.ip = ip;
         this.lugar = lugar;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.monto = monto;
         this.lasCuentas = lasCuentas;
     }
 
-    public Usuario getRemitente() {
+    public String getRemitente() {
         return remitente;
     }
 
-    public void setRemitente(Usuario remitente) {
+    public void setRemitente(String remitente) {
         this.remitente = remitente;
     }
 
-    public Usuario getDestinatario() {
+    public String getDestinatario() {
         return destinatario;
     }
 
-    public void setDestinatario(Usuario destinatario) {
+    public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
+
+
 
     public long getTimestamp() {
         return timestamp;

@@ -10,8 +10,8 @@ package Objetos;
  * @author usuario
  */
 public class Usuario extends Persona{
-    String nickname,contraseña;
-    Cuenta cuenta;
+    String nickname,contraseña,id;
+    
 
     public Usuario(String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
@@ -39,13 +39,15 @@ public class Usuario extends Persona{
         this.contraseña = contraseña;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
+    public String getId() {
+        return id;
     }
 
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
+    public void setId(String id) {
+        this.id = id;
     }
+
+
     
     
     

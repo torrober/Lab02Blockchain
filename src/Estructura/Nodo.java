@@ -13,27 +13,12 @@ import Objetos.Usuario;
  * @author usuario
  */
 public class Nodo {
-    String dato;
-    Object info[];
+
     int numHijos;
     Nodo hijos[];
 
-    public Nodo(String dato) {
-        this.dato = dato;
+    public Nodo() {
         this.numHijos = 0;
-    }
-
-    public Nodo(Object[] info, int numHijos) {
-        this.info = info;
-        this.numHijos = 0;
-    }
-
-    public Object[] getInfo() {
-        return info;
-    }
-
-    public void setInfo(Object[] info) {
-        this.info = info;
     }
 
     public int getNumHijos() {
@@ -50,14 +35,6 @@ public class Nodo {
 
     public void setHijos(Nodo[] hijos) {
         this.hijos = hijos;
-    }
-
-    public String getDato() {
-        return dato;
-    }
-
-    public void setDato(String dato) {
-        this.dato = dato;
     }
 
     public Nodo[] temp() {
