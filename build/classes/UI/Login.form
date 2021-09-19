@@ -186,12 +186,15 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="17" green="7f" red="f5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Iniciar sesion"/>
+            <Property name="text" type="java.lang.String" value="Iniciar sesi&#xf3;n"/>
             <Property name="borderRadius" type="int" value="10"/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="17" green="7f" red="f5" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tRButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="ComponentesUI.TROutlineButton" name="tROutlineButton1">
           <Properties>
@@ -204,6 +207,9 @@
             </Property>
             <Property name="borderRadius" type="int" value="10"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tROutlineButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

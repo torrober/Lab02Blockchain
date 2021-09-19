@@ -5,7 +5,11 @@
  */
 package UI;
 
+import com.kingaspx.toast.util.Toast;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import org.material.component.swingsnackbar.SnackBar;
+import org.material.component.swingsnackbar.action.AbstractSnackBarAction;
 
 /**
  *
@@ -103,14 +107,24 @@ public class Login extends javax.swing.JFrame {
         tRPasswordField1.setPlaceholder("Contraseña");
 
         tRButton1.setBackground(new java.awt.Color(245, 127, 23));
-        tRButton1.setText("Iniciar sesion");
+        tRButton1.setText("Iniciar sesión");
         tRButton1.setBorderRadius(10);
         tRButton1.setColor(new java.awt.Color(245, 127, 23));
+        tRButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tRButton1ActionPerformed(evt);
+            }
+        });
 
         tROutlineButton1.setForeground(new java.awt.Color(245, 127, 23));
         tROutlineButton1.setText("Crear cuenta");
         tROutlineButton1.setBorderColor(new java.awt.Color(245, 127, 23));
         tROutlineButton1.setBorderRadius(10);
+        tROutlineButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tROutlineButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tRShadowPane2Layout = new javax.swing.GroupLayout(tRShadowPane2);
         tRShadowPane2.setLayout(tRShadowPane2Layout);
@@ -177,6 +191,30 @@ public class Login extends javax.swing.JFrame {
         mouseX = evt.getX();
         mouseY = evt.getY();
     }//GEN-LAST:event_tRShadowPane2MousePressed
+
+    private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
+        if(tRTextField1.getText().isEmpty() || tRPasswordField1.getText().isEmpty()){
+            new Toast.ToastSuccessful(
+                    "Error", 
+                    "Error", 
+                    "Por favor verifique los datos", 
+                    Toast.LONG_DELAY);
+        } else {
+            //Realizar acá la verificacion de si existe el usuario, 
+            //si es asi, iniciar pantalla principal, 
+            //si no, mostrar error
+            this.dispose();
+            MainWindow m = new MainWindow(tRTextField1.getText());
+            m.setVisible(true);
+        }
+    }//GEN-LAST:event_tRButton1ActionPerformed
+
+    private void tROutlineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tROutlineButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        SignUp s = new SignUp();
+        s.setVisible(true);
+    }//GEN-LAST:event_tROutlineButton1ActionPerformed
 
     /**
      * @param args the command line arguments

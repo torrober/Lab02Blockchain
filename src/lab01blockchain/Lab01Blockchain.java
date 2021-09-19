@@ -36,18 +36,8 @@ public class Lab01Blockchain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            String ip = IPDetails.getIPData();
-            JSONObject obj = new JSONObject(ip);
-            String lugar = obj.getString("city")+", "+obj.getString("country_name");
-            String dirIP = obj.getString("ip");
-            //System.out.println(ip);
             Login m = new Login();
             m.setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
 
     }
     
