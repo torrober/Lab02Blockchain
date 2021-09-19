@@ -14,8 +14,12 @@ import javax.swing.UnsupportedLookAndFeelException;
 import Estructura.Arbol;
 import Estructura.Nodo;
 import UI.Login;
+import Utils.IPDetails;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
 /**
  *
  * @author guest
@@ -32,10 +36,17 @@ public class Lab01Blockchain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Login m = new Login();
-        m.setVisible(true);
-        //TestFrame t = new TestFrame();
-        //t.setVisible(true);
+        try {
+            String ip = IPDetails.getIPData();
+            JSONObject obj = new JSONObject(ip);
+            String lugar = obj.getString("city")+", "+obj.getString("country_name");
+            String dirIP = obj.getString("ip");
+            //System.out.println(ip);
+            Login m = new Login();
+            m.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Lab01Blockchain.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }

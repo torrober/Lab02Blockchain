@@ -1,32 +1,36 @@
 package Objetos;
 
-
+import Utils.IPDetails;
+import java.io.IOException;
 import java.util.ArrayList;
+import org.json.JSONObject;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author usuario
  */
 public class Transaccion {
+
     long timestamp;
-    String remitente,destinatario,ip,lugar;
-    double latitud,longitud,monto;
+    String remitente, destinatario, ip, lugar;
+    double latitud, longitud, monto;
     ArrayList<Cuenta> lasCuentas;
 
-    public Transaccion(long timestamp, String remitente, String destinatario, String ip, String lugar, double latitud, double longitud, double monto, ArrayList<Cuenta> lasCuentas) {
+    public Transaccion(long timestamp, String remitente, String destinatario, double monto, ArrayList<Cuenta> lasCuentas) throws IOException {
         this.timestamp = timestamp;
         this.remitente = remitente;
         this.destinatario = destinatario;
-        this.ip = ip;
-        this.lugar = lugar;
-        this.latitud = latitud;
-        this.longitud = longitud;
+        String ipData = IPDetails.getIPData();
+        JSONObject obj = new JSONObject(ipData);
+        this.lugar = obj.getString("city") + ", " + obj.getString("country_name");
+        this.ip = obj.getString("ip");
+        this.latitud = obj.getDouble("latitude");
+        this.longitud = obj.getDouble("longitude");
         this.monto = monto;
         this.lasCuentas = lasCuentas;
     }
@@ -46,8 +50,6 @@ public class Transaccion {
     public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
-
-
 
     public long getTimestamp() {
         return timestamp;
@@ -103,5 +105,5 @@ public class Transaccion {
 
     public void setLasCuentas(ArrayList<Cuenta> lasCuentas) {
         this.lasCuentas = lasCuentas;
-    }  
+    }
 }
