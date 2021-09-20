@@ -38,6 +38,8 @@ public class Lab01Blockchain {
         }
             Login m = new Login();
             m.setVisible(true);
+            //MainWindow m = new MainWindow("Test");
+            //m.setVisible(true);
 
     }
     

@@ -5,6 +5,7 @@
  */
 package UI;
 
+import UI.Panels.History;
 import UI.Panels.Home;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -101,6 +102,24 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(245, 127, 23));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SwingPay");
+
+        menuItem5.setItemName("Inicio");
+        menuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuItem5MouseClicked(evt);
+            }
+        });
+
+        menuItem6.setItemName("Mi historial");
+        menuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuItem6MouseClicked(evt);
+            }
+        });
+
+        menuItem7.setItemName("Mis Transferencias");
+
+        menuItem8.setItemName("Mis datos");
 
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
         tRShadowPane1.setLayout(tRShadowPane1Layout);
@@ -288,6 +307,16 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void menuItem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem6MouseClicked
+        // TODO add your handling code here:
+        addPanel(new History());
+    }//GEN-LAST:event_menuItem6MouseClicked
+
+    private void menuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem5MouseClicked
+        // TODO add your handling code here:
+        addPanel(new Home());
+    }//GEN-LAST:event_menuItem5MouseClicked
 
     /**
      * @param args the command line arguments

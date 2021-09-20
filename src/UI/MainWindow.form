@@ -140,12 +140,30 @@
               </Properties>
             </Component>
             <Component class="ComponentesUI.MenuItem" name="menuItem5">
+              <Properties>
+                <Property name="itemName" type="java.lang.String" value="Inicio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuItem5MouseClicked"/>
+              </Events>
             </Component>
             <Component class="ComponentesUI.MenuItem" name="menuItem6">
+              <Properties>
+                <Property name="itemName" type="java.lang.String" value="Mi historial"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuItem6MouseClicked"/>
+              </Events>
             </Component>
             <Component class="ComponentesUI.MenuItem" name="menuItem7">
+              <Properties>
+                <Property name="itemName" type="java.lang.String" value="Mis Transferencias"/>
+              </Properties>
             </Component>
             <Component class="ComponentesUI.MenuItem" name="menuItem8">
+              <Properties>
+                <Property name="itemName" type="java.lang.String" value="Mis datos"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
