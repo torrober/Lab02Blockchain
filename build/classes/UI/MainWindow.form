@@ -157,8 +157,11 @@
             </Component>
             <Component class="ComponentesUI.MenuItem" name="menuItem7">
               <Properties>
-                <Property name="itemName" type="java.lang.String" value="Mis Transferencias"/>
+                <Property name="itemName" type="java.lang.String" value="Mis Transacciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuItem7MouseClicked"/>
+              </Events>
             </Component>
             <Component class="ComponentesUI.MenuItem" name="menuItem8">
               <Properties>

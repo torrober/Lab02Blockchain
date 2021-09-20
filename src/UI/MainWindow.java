@@ -7,6 +7,7 @@ package UI;
 
 import UI.Panels.History;
 import UI.Panels.Home;
+import UI.Panels.Transactions;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -117,7 +118,12 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        menuItem7.setItemName("Mis Transferencias");
+        menuItem7.setItemName("Mis Transacciones");
+        menuItem7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuItem7MouseClicked(evt);
+            }
+        });
 
         menuItem8.setItemName("Mis datos");
 
@@ -317,6 +323,11 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         addPanel(new Home());
     }//GEN-LAST:event_menuItem5MouseClicked
+
+    private void menuItem7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem7MouseClicked
+        // TODO add your handling code here:
+        addPanel(new Transactions());
+    }//GEN-LAST:event_menuItem7MouseClicked
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,8 @@
  */
 package UI.Panels;
 
-import ComponentesUI.TransferenciaBubble;
+import UI.Elementos.Header;
+import UI.Elementos.TransferenciaBubble;
 import java.awt.Color;
 import net.miginfocom.swing.MigLayout;
 
@@ -21,6 +22,10 @@ public class History extends javax.swing.JPanel {
     public History() {
         initComponents();
         jPanel1.setLayout(new MigLayout("fillx"));
+        jPanel1.add(new Header("Mi historial"), "wrap, w 572");
+        jPanel1.setBackground(Color.white);
+        jPanel1.repaint();
+        jPanel1.revalidate();
         addLeft(new TransferenciaBubble(140.300));
         addRight(new TransferenciaBubble(5.500));
         addLeft(new TransferenciaBubble(20.400));
