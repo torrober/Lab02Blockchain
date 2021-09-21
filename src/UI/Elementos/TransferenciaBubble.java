@@ -51,11 +51,11 @@ public class TransferenciaBubble extends javax.swing.JPanel {
         tRShadowPane1.setBorderRadius(30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(112, 112, 112));
         jLabel1.setText("Te transfirieron");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(112, 112, 112));
         jLabel2.setText("$10.000");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_currency_exchange_48px.png"))); // NOI18N

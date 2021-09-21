@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/ComponentesUI/TRShadowPane.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/ComponentesUI/TransferenciaBubble.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/MainWindow.java</file>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/lab01blockchain/Lab01Blockchain.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/Objetos/TipoDoc.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/SignUp.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/NewTransaction.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Login.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Elementos/HeaderTransacciones.java</file>
         </group>
     </open-files>
 </project-private>

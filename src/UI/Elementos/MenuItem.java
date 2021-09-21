@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ComponentesUI;
+package UI.Elementos;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -59,7 +59,7 @@ public class MenuItem extends javax.swing.JPanel {
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_home_24px.png"))); // NOI18N
 
         itemName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        itemName.setForeground(new java.awt.Color(249, 168, 37));
+        itemName.setForeground(new java.awt.Color(245, 127, 23));
         itemName.setText("Menu Item");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

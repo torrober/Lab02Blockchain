@@ -61,10 +61,10 @@ public class MainWindow extends javax.swing.JFrame {
         tRShadowPane6 = new ComponentesUI.TRShadowPane();
         tRShadowPane1 = new ComponentesUI.TRShadowPane();
         jLabel1 = new javax.swing.JLabel();
-        menuItem5 = new ComponentesUI.MenuItem();
-        menuItem6 = new ComponentesUI.MenuItem();
-        menuItem7 = new ComponentesUI.MenuItem();
-        menuItem8 = new ComponentesUI.MenuItem();
+        menuItem5 = new UI.Elementos.MenuItem();
+        menuItem6 = new UI.Elementos.MenuItem();
+        menuItem7 = new UI.Elementos.MenuItem();
+        menuItem8 = new UI.Elementos.MenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,6 +111,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        menuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_payment_history_24px.png"))); // NOI18N
         menuItem6.setItemName("Mi historial");
         menuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,13 +119,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        menuItem7.setItemName("Mis Transacciones");
+        menuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_currency_exchange_24px.png"))); // NOI18N
+        menuItem7.setItemName("Mis transacciones");
         menuItem7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuItem7MouseClicked(evt);
             }
         });
 
+        menuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_user_24px.png"))); // NOI18N
         menuItem8.setItemName("Mis datos");
 
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
@@ -210,10 +213,12 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("user");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("SwingPay");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_exit_24px.png"))); // NOI18N
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -239,7 +244,7 @@ public class MainWindow extends javax.swing.JFrame {
         tRShadowPane7Layout.setVerticalGroup(
             tRShadowPane7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tRShadowPane7Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(20, 20, 20)
                 .addGroup(tRShadowPane7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tRShadowPane7Layout.createSequentialGroup()
@@ -249,7 +254,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout tRShadowPane6Layout = new javax.swing.GroupLayout(tRShadowPane6);
@@ -342,10 +347,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private ComponentesUI.MenuItem menuItem5;
-    private ComponentesUI.MenuItem menuItem6;
-    private ComponentesUI.MenuItem menuItem7;
-    private ComponentesUI.MenuItem menuItem8;
+    private UI.Elementos.MenuItem menuItem5;
+    private UI.Elementos.MenuItem menuItem6;
+    private UI.Elementos.MenuItem menuItem7;
+    private UI.Elementos.MenuItem menuItem8;
     private ComponentesUI.TRShadowPane tRShadowPane1;
     private ComponentesUI.TRShadowPane tRShadowPane6;
     private ComponentesUI.TRShadowPane tRShadowPane7;

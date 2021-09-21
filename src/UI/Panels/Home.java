@@ -48,51 +48,130 @@ public class Home extends javax.swing.JPanel {
     private void initComponents() {
 
         tRShadowPane3 = new ComponentesUI.TRShadowPane();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         tRShadowPane4 = new ComponentesUI.TRShadowPane();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         tRShadowPane5 = new ComponentesUI.TRShadowPane();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         tRShadowPane3.setBackground(new java.awt.Color(255, 255, 255));
         tRShadowPane3.setBorderRadius(30);
         tRShadowPane3.setPreferredSize(new java.awt.Dimension(175, 207));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_macbook_money_96px_3.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(112, 112, 112));
+        jLabel2.setText("Transacciones");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(112, 112, 112));
+        jLabel3.setText("Ver más >");
+
         javax.swing.GroupLayout tRShadowPane3Layout = new javax.swing.GroupLayout(tRShadowPane3);
         tRShadowPane3.setLayout(tRShadowPane3Layout);
         tRShadowPane3Layout.setHorizontalGroup(
             tRShadowPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
+            .addGroup(tRShadowPane3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(tRShadowPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(tRShadowPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         tRShadowPane3Layout.setVerticalGroup(
             tRShadowPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
+            .addGroup(tRShadowPane3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         tRShadowPane4.setBackground(new java.awt.Color(255, 255, 255));
         tRShadowPane4.setBorderRadius(30);
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_us_dollar_circled_96px.png"))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(112, 112, 112));
+        jLabel4.setText("Mi saldo");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(112, 112, 112));
+        jLabel6.setText("$10.000");
+
         javax.swing.GroupLayout tRShadowPane4Layout = new javax.swing.GroupLayout(tRShadowPane4);
         tRShadowPane4.setLayout(tRShadowPane4Layout);
         tRShadowPane4Layout.setHorizontalGroup(
             tRShadowPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
+            .addGroup(tRShadowPane4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(tRShadowPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         tRShadowPane4Layout.setVerticalGroup(
             tRShadowPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(tRShadowPane4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tRShadowPane5.setBackground(new java.awt.Color(255, 255, 255));
         tRShadowPane5.setBorderRadius(30);
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_payment_history_96px.png"))); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(112, 112, 112));
+        jLabel8.setText("Mi historial");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(112, 112, 112));
+        jLabel9.setText("Ver más >");
+
         javax.swing.GroupLayout tRShadowPane5Layout = new javax.swing.GroupLayout(tRShadowPane5);
         tRShadowPane5.setLayout(tRShadowPane5Layout);
         tRShadowPane5Layout.setHorizontalGroup(
             tRShadowPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
+            .addGroup(tRShadowPane5Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(tRShadowPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         tRShadowPane5Layout.setVerticalGroup(
             tRShadowPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(tRShadowPane5Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -117,7 +196,7 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(tRShadowPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(tRShadowPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 30, Short.MAX_VALUE)
+                .addGap(18, 31, Short.MAX_VALUE)
                 .addComponent(tRShadowPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -136,6 +215,15 @@ public class Home extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private ComponentesUI.TRShadowPane tRShadowPane3;
     private ComponentesUI.TRShadowPane tRShadowPane4;
