@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/MainWindow.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/lab01blockchain/Lab01Blockchain.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/SignUp.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/NewTransaction.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Login.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Elementos/HeaderTransacciones.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Utils/StringUtil.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/NodoUsuario.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/Cadena.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Billetera.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Transaccion.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/EntradasT.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/Arbol.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/NodoTransaccion.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Transaccion1.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/NodoEstado.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Usuario.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/Bloque.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/lab01blockchain/Lab01Blockchain.java</file>
+            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Cuenta.java</file>
         </group>
     </open-files>
 </project-private>
