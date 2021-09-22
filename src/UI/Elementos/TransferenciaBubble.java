@@ -5,6 +5,7 @@
  */
 package UI.Elementos;
 
+import ComponentesUI.SpeechBubbleDirection;
 import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -24,7 +25,8 @@ public class TransferenciaBubble extends javax.swing.JPanel {
         jLabel2.setText("$" +formatter.format(valor));
     }
     public void setSent() {
-        tRShadowPane1.setBackground(new Color(245,127,23));
+        tRSpeechBubble1.setBackground(new Color(245,127,23));
+        tRSpeechBubble1.setDirection(SpeechBubbleDirection.RIGHT);
         jLabel1.setForeground(Color.white);
         jLabel2.setForeground(Color.white);
         jLabel1.setText("Transferiste");
@@ -39,16 +41,15 @@ public class TransferenciaBubble extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tRShadowPane1 = new ComponentesUI.TRShadowPane();
+        tRSpeechBubble1 = new ComponentesUI.TRSpeechBubble();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tRShadowPane1.setBackground(new java.awt.Color(255, 255, 255));
-        tRShadowPane1.setForeground(new java.awt.Color(0, 0, 0));
-        tRShadowPane1.setBorderRadius(30);
+        tRSpeechBubble1.setBackground(new java.awt.Color(255, 255, 255));
+        tRSpeechBubble1.setBorderRadius(30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(112, 112, 112));
@@ -60,41 +61,41 @@ public class TransferenciaBubble extends javax.swing.JPanel {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_currency_exchange_48px.png"))); // NOI18N
 
-        javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
-        tRShadowPane1.setLayout(tRShadowPane1Layout);
-        tRShadowPane1Layout.setHorizontalGroup(
-            tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tRShadowPane1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+        javax.swing.GroupLayout tRSpeechBubble1Layout = new javax.swing.GroupLayout(tRSpeechBubble1);
+        tRSpeechBubble1.setLayout(tRSpeechBubble1Layout);
+        tRSpeechBubble1Layout.setHorizontalGroup(
+            tRSpeechBubble1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tRSpeechBubble1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jLabel3)
-                .addGap(30, 30, 30)
-                .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(tRSpeechBubble1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
-        tRShadowPane1Layout.setVerticalGroup(
-            tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tRShadowPane1Layout.createSequentialGroup()
+        tRSpeechBubble1Layout.setVerticalGroup(
+            tRSpeechBubble1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tRSpeechBubble1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(tRShadowPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(tRSpeechBubble1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addGroup(tRSpeechBubble1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)))
-                .addGap(36, 36, 36))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tRShadowPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tRSpeechBubble1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tRShadowPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tRSpeechBubble1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -103,7 +104,7 @@ public class TransferenciaBubble extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private ComponentesUI.TRShadowPane tRShadowPane1;
+    private ComponentesUI.TRSpeechBubble tRSpeechBubble1;
     // End of variables declaration//GEN-END:variables
 
     private Object DecimalFormat(String string) {

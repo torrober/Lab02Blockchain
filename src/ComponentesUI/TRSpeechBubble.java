@@ -5,6 +5,9 @@
  */
 package ComponentesUI;
 
+import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,10 +19,18 @@ import javax.swing.JPanel;
  *
  * @author guest
  */
-public class TRShadowPane extends JPanel {
+public class TRSpeechBubble extends JPanel {
 
     private int shadowSize = 6;
     private float shadowOpacity = 0.2f;
+    private int strokeThickness = 5;
+    private int padding = strokeThickness / 2;
+    private int arrowSize = 4;
+    private SpeechBubbleDirection direction = SpeechBubbleDirection.LEFT;
+
+    public void setDirection(SpeechBubbleDirection direction) {
+        this.direction = direction;
+    }
 
     public int getShadowSize() {
         return shadowSize;
@@ -54,7 +65,8 @@ public class TRShadowPane extends JPanel {
     }
     private Color shadowColor = Color.BLACK;
     private int borderRadius;
-    public TRShadowPane() {
+
+    public TRSpeechBubble() {
         setOpaque(false);
     }
 
@@ -71,18 +83,34 @@ public class TRShadowPane extends JPanel {
         int y = 0;
         int width = getWidth() - size;
         int height = getHeight() - size;
+        int widthArrow = getWidth() - arrowSize - (strokeThickness * 2);
         //  Center
-        x = shadowSize;
-        y = shadowSize-4;
+        x = padding + strokeThickness + shadowSize;
+        y = shadowSize - 4;
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = img.createGraphics();
         g.setColor(getBackground());
+        g.setStroke(new BasicStroke(strokeThickness));
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.fillRoundRect(0, 0, width, height, borderRadius, borderRadius);
-        
+        if (direction == SpeechBubbleDirection.LEFT) {
+            g.fillRoundRect(20, padding, width - padding - 20, height - 2, borderRadius, borderRadius);
+            Polygon arrow = new Polygon();
+            arrow.addPoint(20, height / 2);
+            arrow.addPoint(0, ((height - 20) / 2));
+            arrow.addPoint(20, ((height - 20) / 2));
+            g.fill(arrow);
+        } else if (direction == SpeechBubbleDirection.RIGHT) {
+            g.fillRoundRect(0, padding, width - padding - 20, height - 2, borderRadius, borderRadius);
+            Polygon arrow = new Polygon();
+            arrow.addPoint(widthArrow-20, height / 2);
+            arrow.addPoint(widthArrow + arrowSize, ((height - 20) / 2));
+            arrow.addPoint(widthArrow-20, ((height - 20) / 2));
+            g.fill(arrow);
+        }
         //  Create Shadow
         ShadowRenderer render = new ShadowRenderer(shadowSize, shadowOpacity, shadowColor);
         g2.drawImage(render.createShadow(img), 0, 0, null);
         g2.drawImage(img, x, y, null);
     }
+
 }
