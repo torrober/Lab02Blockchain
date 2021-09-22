@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Objetos.Usuario;
 import com.kingaspx.toast.util.Toast;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -208,19 +209,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tRShadowPane2MousePressed
 
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
-        if(tRTextField1.getText().isEmpty() || tRPasswordField1.getText().isEmpty()){
+        if (tRTextField1.getText().isEmpty() || tRPasswordField1.getText().isEmpty()) {
             new Toast.ToastSuccessful(
-                    "Error", 
-                    "Error", 
-                    "Por favor verifique los datos", 
+                    "Error",
+                    "Error",
+                    "Por favor verifique los datos",
                     Toast.LONG_DELAY);
         } else {
-            //Realizar acá la verificacion de si existe el usuario, 
-            //si es asi, iniciar pantalla principal, 
-            //si no, mostrar error
-            this.dispose();
-            MainWindow m = new MainWindow(tRTextField1.getText());
-            m.setVisible(true);
+            try {
+                if (Usuario.verificarUsuario(tRTextField1.getText(), tRPasswordField1.getText())) {
+                    this.dispose();
+                    MainWindow m = new MainWindow(tRTextField1.getText());
+                    m.setVisible(true);
+                } else {
+                    new Toast.ToastSuccessful(
+                            "Error",
+                            "Error",
+                            "Contraseña Incorrecta",
+                            Toast.LONG_DELAY);
+                }
+            } catch (Exception ex) {
+            }
         }
     }//GEN-LAST:event_tRButton1ActionPerformed
 
