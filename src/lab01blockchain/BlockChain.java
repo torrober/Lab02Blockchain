@@ -5,6 +5,7 @@
  */
 package lab01blockchain;
 
+import org.bouncycastle.*;
 import ComponentesUI.TestFrame;
 import UI.MainWindow;
 import java.util.logging.Level;
@@ -32,7 +33,6 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.json.JSONObject;
 
 /**
@@ -45,11 +45,12 @@ public class BlockChain {
     public static Billetera walletB;
     public static Transaccion genesisTransaction;
     public static ArrayList<Bloque> cadena = new ArrayList<Bloque>();
-    public static int diff = 4;
+    public static int diff = 3;
     public static HashMap<String, SalidasT> UTXOs = new HashMap<String, SalidasT>();
     public static float minimumTransaction = 0.1f;
 
     public static void main(String[] args) throws IOException {
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         Arbol a = new Arbol();
         Nodo raiz = new Nodo();
         Nodo usuarios = new Nodo();
@@ -57,21 +58,6 @@ public class BlockChain {
         a.setRaiz(raiz);
         raiz.aumentarHijos(usuarios);
         raiz.aumentarHijos(bloques);
-
-        Bloque origen = new Bloque("0");
-        Billetera A = new Billetera();
-        Billetera B = new Billetera();
-        Billetera madre = new Billetera();
-        Security.addProvider(new BouncyCastleProvider());
-        //create genesis transaction, which sends 100 NoobCoin to walletA: 
-        Transaccion genesisTransaction = new Transaccion(madre.publicKey, A.publicKey, 100f, null);
-        genesisTransaction.generarSignature(madre.privateKey);	 //manually sign the genesis transaction	
-        genesisTransaction.idTransaccion = "0"; //manually set the transaction id
-        genesisTransaction.outputs.add(new SalidasT(genesisTransaction.remitente, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
-        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
-        Bloque genesis = new Bloque("0");
-        genesis.addTransaccion(genesisTransaction);
-        addBlock(genesis);
 
         try {
             // TODO code application logic here
@@ -85,6 +71,20 @@ public class BlockChain {
         //FileUtils.WriteUserToFile(u);
 //MainWindow m = new MainWindow("Test");
         //m.setVisible(true);
+
+        Bloque origen = new Bloque("0");
+        Billetera A = new Billetera();
+        Billetera B = new Billetera();
+        Billetera madre = new Billetera();
+        //create genesis transaction, which sends 100 NoobCoin to walletA: 
+        Transaccion genesisTransaction = new Transaccion(madre.publicKey, A.publicKey, 100f, null);
+        genesisTransaction.generarSignature(madre.privateKey);	 //manually sign the genesis transaction	
+        genesisTransaction.idTransaccion = "0"; //manually set the transaction id
+        genesisTransaction.outputs.add(new SalidasT(genesisTransaction.remitente, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
+        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
+        Bloque genesis = new Bloque("0");
+        genesis.addTransaccion(genesisTransaction);
+        addBlock(genesis);
 
     }
 
