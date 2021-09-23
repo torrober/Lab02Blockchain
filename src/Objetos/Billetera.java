@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Objetos;
-
 import java.io.IOException;
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;
