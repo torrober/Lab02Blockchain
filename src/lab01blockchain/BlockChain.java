@@ -32,6 +32,7 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.json.JSONObject;
 
 /**
@@ -61,7 +62,7 @@ public class BlockChain {
         Billetera A = new Billetera();
         Billetera B = new Billetera();
         Billetera madre = new Billetera();
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        Security.addProvider(new BouncyCastleProvider());
         //create genesis transaction, which sends 100 NoobCoin to walletA: 
         Transaccion genesisTransaction = new Transaccion(madre.publicKey, A.publicKey, 100f, null);
         genesisTransaction.generarSignature(madre.privateKey);	 //manually sign the genesis transaction	
