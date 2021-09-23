@@ -11,7 +11,7 @@ import java.security.*;
  */
 public class NodoEstado extends Nodo {
     PublicKey idRemitente,idDestinatario;
-    double balanceRem,balanceDest;
+    float balanceRem,balanceDest;
 
     public NodoEstado() {
         this.numHijos=0;
@@ -37,7 +37,7 @@ public class NodoEstado extends Nodo {
         return balanceRem;
     }
 
-    public void setBalanceRem(double balanceRem) {
+    public void setBalanceRem(float balanceRem) {
         this.balanceRem = balanceRem;
     }
 
@@ -45,7 +45,7 @@ public class NodoEstado extends Nodo {
         return balanceDest;
     }
 
-    public void setBalanceDest(double balanceDest) {
+    public void setBalanceDest(float balanceDest) {
         this.balanceDest = balanceDest;
     }
 

@@ -45,12 +45,11 @@ public class BlockChain {
     public static Billetera walletB;
     public static Transaccion genesisTransaction;
     public static ArrayList<Bloque> cadena = new ArrayList<Bloque>();
-    public static int diff = 3;
+    public static int diff = 0;
     public static HashMap<String, SalidasT> UTXOs = new HashMap<String, SalidasT>();
     public static float minimumTransaction = 0.1f;
 
     public static void main(String[] args) throws IOException {
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         Arbol a = new Arbol();
         Nodo raiz = new Nodo();
         Nodo usuarios = new Nodo();
@@ -58,6 +57,7 @@ public class BlockChain {
         a.setRaiz(raiz);
         raiz.aumentarHijos(usuarios);
         raiz.aumentarHijos(bloques);
+        System.out.println("Logrado");
 
         try {
             // TODO code application logic here
@@ -67,19 +67,42 @@ public class BlockChain {
         }
         Login m = new Login();
         m.setVisible(true);
+<<<<<<< Updated upstream
         Bloque origen = new Bloque("0");
         Billetera A = new Billetera();
         Billetera B = new Billetera();
         Billetera madre = new Billetera();
+=======
+        //Usuario u = new Usuario("torro","aaaa","Roberto", "Rocha","6/22/2002",32534546,TipoDoc.cedCiudadania,Sexo.Masculino);
+        //FileUtils.WriteUserToFile(u);
+//MainWindow m = new MainWindow("Test");
+        //m.setVisible(true);
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        walletA = new Billetera();
+        walletB = new Billetera();
+        Billetera coinbase = new Billetera();
+        
+>>>>>>> Stashed changes
         //create genesis transaction, which sends 100 NoobCoin to walletA: 
-        Transaccion genesisTransaction = new Transaccion(madre.publicKey, A.publicKey, 100f, null);
-        genesisTransaction.generarSignature(madre.privateKey);	 //manually sign the genesis transaction	
-        genesisTransaction.idTransaccion = "0"; //manually set the transaction id
-        genesisTransaction.outputs.add(new SalidasT(genesisTransaction.remitente, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
-        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
-        Bloque genesis = new Bloque("0");
-        genesis.addTransaccion(genesisTransaction);
-        addBlock(genesis);
+		genesisTransaction = new Transaccion(coinbase.publicKey, walletA.publicKey, 100f, null);
+		genesisTransaction.generarSignature(coinbase.privateKey);	 //manually sign the genesis transaction	
+		genesisTransaction.idTransaccion = "0"; //manually set the transaction id
+		genesisTransaction.outputs.add(new SalidasT(genesisTransaction.destinatario, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
+		UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
+		
+		System.out.println("Creating and Mining Genesis block... ");
+		Bloque genesis = new Bloque("0");
+		genesis.addTransaccion(genesisTransaction);
+		addBlock(genesis);
+		
+		//testing
+		Bloque block1 = new Bloque(genesis.id);
+		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
+		System.out.println("\nWalletA is Attempting to send funds (40) to WalletB...");
+		block1.addTransaccion(walletA.sendFunds(walletB.publicKey, 40f));
+		addBlock(block1);
+		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
+		System.out.println("WalletB's balance is: " + walletB.getBalance());
 
     }
 
@@ -144,7 +167,10 @@ public class BlockChain {
     }
 
     public static void addBlock(Bloque newBlock) {
+        System.out.println("minado");
         newBlock.minarbloque(diff);
+        System.out.println("minado1");
         cadena.add(newBlock);
+
     }
 }

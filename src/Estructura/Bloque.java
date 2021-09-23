@@ -43,6 +43,7 @@ public class Bloque {
         while (!id.substring(0, diff).equals(objetivo)) {
             nonce++;
             id = generarId();
+            System.out.println("minando");
         }
 
     }
