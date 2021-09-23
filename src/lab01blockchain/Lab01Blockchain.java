@@ -17,9 +17,14 @@ import static Estructura.Cadena.UTXOs;
 import Estructura.Nodo;
 import Objetos.Billetera;
 import Objetos.SalidasT;
+import Objetos.Sexo;
+import Objetos.TipoDoc;
 import Objetos.Transaccion1;
+import Objetos.Usuario;
 import UI.Login;
+import Utils.FileUtils;
 import Utils.IPDetails;
+import Utils.StringUtil;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.io.IOException;
@@ -54,7 +59,9 @@ public class Lab01Blockchain {
         }
         Login m = new Login();
         m.setVisible(true);
-        //MainWindow m = new MainWindow("Test");
+        //Usuario u = new Usuario("torro","aaaa","Roberto", "Rocha","6/22/2002",32534546,TipoDoc.cedCiudadania,Sexo.Masculino);
+        //FileUtils.WriteUserToFile(u);
+//MainWindow m = new MainWindow("Test");
         //m.setVisible(true);
 
     }

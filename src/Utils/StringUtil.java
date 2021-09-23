@@ -67,23 +67,23 @@ public class StringUtil {
     public static String getStringFromKey(Key key) {
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
-    
+
     public static String getMerkleRoot(ArrayList<Transaccion1> transactions) {
-		int count = transactions.size();
-		ArrayList<String> previousTreeLayer = new ArrayList<String>();
-		for(Transaccion1 transaction : transactions) {
-			previousTreeLayer.add(transaction.idTransaccion);
-		}
-		ArrayList<String> treeLayer = previousTreeLayer;
-		while(count > 1) {
-			treeLayer = new ArrayList<String>();
-			for(int i=1; i < previousTreeLayer.size(); i++) {
-				treeLayer.add(applySha256(previousTreeLayer.get(i-1) + previousTreeLayer.get(i)));
-			}
-			count = treeLayer.size();
-			previousTreeLayer = treeLayer;
-		}
-		String merkleRoot = (treeLayer.size() == 1) ? treeLayer.get(0) : "";
-		return merkleRoot;
-	}
+        int count = transactions.size();
+        ArrayList<String> previousTreeLayer = new ArrayList<String>();
+        for (Transaccion1 transaction : transactions) {
+            previousTreeLayer.add(transaction.idTransaccion);
+        }
+        ArrayList<String> treeLayer = previousTreeLayer;
+        while (count > 1) {
+            treeLayer = new ArrayList<String>();
+            for (int i = 1; i < previousTreeLayer.size(); i++) {
+                treeLayer.add(applySha256(previousTreeLayer.get(i - 1) + previousTreeLayer.get(i)));
+            }
+            count = treeLayer.size();
+            previousTreeLayer = treeLayer;
+        }
+        String merkleRoot = (treeLayer.size() == 1) ? treeLayer.get(0) : "";
+        return merkleRoot;
+    }
 }
