@@ -5,7 +5,7 @@
  */
 package Estructura;
 
-import Objetos.Transaccion1;
+import Objetos.Transaccion;
 import Utils.StringUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +19,7 @@ public class Bloque {
     public String id;
     public String idAntes;
     public String merkleRoot;
-    public ArrayList<Transaccion1> transactions = new ArrayList<Transaccion1>();
+    public ArrayList<Transaccion> transactions = new ArrayList<Transaccion>();
     public long timeStamp;
     public int nonce;
 
@@ -46,7 +46,7 @@ public class Bloque {
         }
 
     }
-    public boolean addTransaccion(Transaccion1 transaction) {
+    public boolean addTransaccion(Transaccion transaction) {
 		if(transaction == null) return false;		
 		if((idAntes != "0")) {
 			if((transaction.procesarTransaccion()!= true)) {

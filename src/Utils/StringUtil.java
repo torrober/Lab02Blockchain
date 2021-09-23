@@ -5,7 +5,7 @@
  */
 package Utils;
 
-import Objetos.Transaccion1;
+import Objetos.Transaccion;
 import java.security.MessageDigest;
 import java.security.*;
 import java.util.ArrayList;
@@ -68,10 +68,10 @@ public class StringUtil {
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
-    public static String getMerkleRoot(ArrayList<Transaccion1> transactions) {
+    public static String getMerkleRoot(ArrayList<Transaccion> transactions) {
         int count = transactions.size();
         ArrayList<String> previousTreeLayer = new ArrayList<String>();
-        for (Transaccion1 transaction : transactions) {
+        for (Transaccion transaction : transactions) {
             previousTreeLayer.add(transaction.idTransaccion);
         }
         ArrayList<String> treeLayer = previousTreeLayer;

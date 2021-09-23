@@ -5,12 +5,13 @@
  */
 package Objetos;
 
-import Estructura.Cadena;
+import java.io.IOException;
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import lab01blockchain.BlockChain;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Billetera {
     //returns balance and stores the UTXO's owned by this wallet in this.UTXOs
     public float getBalance() {
         float total = 0;
-        for (Map.Entry<String, SalidasT> item : Cadena.UTXOs.entrySet()) {
+        for (Map.Entry<String, SalidasT> item : BlockChain.UTXOs.entrySet()) {
             SalidasT UTXO = item.getValue();
             if (UTXO.verificarMoneda(publicKey)) { //if output belongs to me ( if coins belong to me )
                 UTXOs.put(UTXO.id, UTXO); //add it to our list of unspent transactions.
@@ -53,7 +54,7 @@ public class Billetera {
         return total;
     }
 
-    public Transaccion1 sendFunds(PublicKey destinatario, float monto) {
+    public Transaccion sendFunds(PublicKey destinatario, float monto) throws IOException {
         if (getBalance() < monto) { 
             return null;
         }
@@ -67,7 +68,7 @@ public class Billetera {
 			if(total > monto) break;
 		}
 		
-		Transaccion1 nueva = new Transaccion1(publicKey, destinatario , monto, inputs);
+		Transaccion nueva = new Transaccion(publicKey, destinatario , monto, inputs);
 		nueva.generarSignature(privateKey);
 		
 		for(EntradasT input: inputs){

@@ -6,7 +6,7 @@
 package Estructura;
 
 import Objetos.Billetera;
-import Objetos.Transaccion1;
+import Objetos.Transaccion;
 import Objetos.Usuario;
 
 /**
@@ -31,29 +31,29 @@ public class Arbol {
 
     public void insertarUsuario(Nodo a, Usuario dato) {
         NodoUsuario nuevo = new NodoUsuario(dato);
-        a.hijos[1].aumentarHijos(nuevo);
+        a.hijos[0].aumentarHijos(nuevo);
     }
 
     public void insertarBloque(Nodo a, Bloque b) {
         NodoBloque block = new NodoBloque(b);
-        a.hijos[2].aumentarHijos(block);
+        a.hijos[1].aumentarHijos(block);
 
     }
 
-    public void insertarTransaccion(Nodo a, Transaccion1 t, int cont) {
+    public void insertarTransaccion(Nodo a, Transaccion t, int cont) {
         NodoTransaccion nuevo = new NodoTransaccion(t);
         for (int i = 0; i < a.hijos[2].numHijos; i++) {
-            if (a.hijos[2].hijos[i].numHijos < 3) {
-                a.hijos[2].hijos[i].aumentarHijos(nuevo);
+            if (a.hijos[1].hijos[i].numHijos < 3) {
+                a.hijos[1].hijos[i].aumentarHijos(nuevo);
             } else {
-                insertarTransaccion(a.hijos[2].hijos[i], t, cont + 1);
+                insertarTransaccion(a.hijos[1].hijos[i], t, cont + 1);
             }
         }
-        if (cont == a.hijos[2].numHijos) {
-            NodoBloque baux = (NodoBloque) a.hijos[2].hijos[cont];
+        if (cont == a.hijos[1].numHijos) {
+            NodoBloque baux = (NodoBloque) a.hijos[1].hijos[cont];
             Bloque b = new Bloque(baux.block.id);
             insertarBloque(a, b);
-            a.hijos[2].hijos[cont + 1].aumentarHijos(nuevo);
+            a.hijos[1].hijos[cont + 1].aumentarHijos(nuevo);
         }
     }
 
@@ -73,11 +73,11 @@ public class Arbol {
 
         for (int i = 0; i < a.hijos[2].numHijos; i++) {
             for (int j = 0; j < a.hijos[2].hijos[i].numHijos; j++) {
-                if (a.hijos[2].hijos[i].hijos[j].equals(t)) {
-                    a.hijos[2].hijos[i].hijos[j].aumentarHijos(antes);
-                    a.hijos[2].hijos[i].hijos[j].aumentarHijos(despues);
+                if (a.hijos[1].hijos[i].hijos[j].equals(t)) {
+                    a.hijos[1].hijos[i].hijos[j].aumentarHijos(antes);
+                    a.hijos[1].hijos[i].hijos[j].aumentarHijos(despues);
                 } else {
-                    insertarEstado(a.hijos[2].hijos[i].hijos[j], t);
+                    insertarEstado(a.hijos[1].hijos[i].hijos[j], t);
                 }
             }
         }

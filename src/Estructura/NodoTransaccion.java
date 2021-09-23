@@ -5,16 +5,16 @@
  */
 package Estructura;
 
-import Objetos.Transaccion1;
+import Objetos.Transaccion;
 
 /**
  *
  * @author Jaider
  */
 public class NodoTransaccion extends Nodo {
-    Transaccion1 transaccion;
+    Transaccion transaccion;
 
-    public NodoTransaccion(Transaccion1 trans) {
+    public NodoTransaccion(Transaccion trans) {
         this.numHijos=0;
         this.transaccion=trans;
     }

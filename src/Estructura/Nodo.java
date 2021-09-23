@@ -5,9 +5,6 @@
  */
 package Estructura;
 
-import Objetos.Transaccion;
-import Objetos.Usuario;
-
 /**
  *
  * @author usuario
