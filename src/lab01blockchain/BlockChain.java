@@ -67,11 +67,6 @@ public class BlockChain {
         }
         Login m = new Login();
         m.setVisible(true);
-        //Usuario u = new Usuario("torro","aaaa","Roberto", "Rocha","6/22/2002",32534546,TipoDoc.cedCiudadania,Sexo.Masculino);
-        //FileUtils.WriteUserToFile(u);
-//MainWindow m = new MainWindow("Test");
-        //m.setVisible(true);
-
         Bloque origen = new Bloque("0");
         Billetera A = new Billetera();
         Billetera B = new Billetera();

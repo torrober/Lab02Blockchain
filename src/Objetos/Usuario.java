@@ -32,7 +32,7 @@ public class Usuario extends Persona {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
     }
 
-    public Usuario(String nickname, String contraseña, String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
+public Usuario(String nickname, String contraseña, String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
         this.nickname = nickname;
         //esta contraseña no tiene sabor, hora de echarle sal!

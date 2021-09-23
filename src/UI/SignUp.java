@@ -7,8 +7,12 @@ package UI;
 
 import Objetos.Sexo;
 import Objetos.TipoDoc;
+import Objetos.Usuario;
+import Utils.EnumUtils;
 import java.awt.Color;
+import java.text.DateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -270,6 +274,19 @@ public class SignUp extends javax.swing.JFrame {
 
     private void tROutlineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tROutlineButton1ActionPerformed
         // TODO add your handling code here:
+        String user = tRTextField1.getText();
+        String password = tRPasswordField1.getText();
+        String name = tRTextField2.getText();
+        String surname = tRTextField3.getText();
+        int idnum = Integer.parseInt(tRTextField4.getText());
+        System.out.println(jComboBox3.getSelectedItem());
+        TipoDoc idType = EnumUtils.parseTipoDoc(String.valueOf(jComboBox3.getSelectedItem()));
+        Date birthday = jDateChooser1.getDate();
+        String strDate = DateFormat.getDateInstance().format(birthday);
+        Sexo sexType = EnumUtils.parseSexo(String.valueOf(jComboBox4.getSelectedItem()));
+        //falta verificacion, ojo
+        Usuario createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
+        
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 
     private void tRShadowPane2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tRShadowPane2MouseDragged
