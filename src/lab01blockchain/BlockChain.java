@@ -67,12 +67,7 @@ public class BlockChain {
         }
         Login m = new Login();
         m.setVisible(true);
-<<<<<<< Updated upstream
-        Bloque origen = new Bloque("0");
-        Billetera A = new Billetera();
-        Billetera B = new Billetera();
-        Billetera madre = new Billetera();
-=======
+
         //Usuario u = new Usuario("torro","aaaa","Roberto", "Rocha","6/22/2002",32534546,TipoDoc.cedCiudadania,Sexo.Masculino);
         //FileUtils.WriteUserToFile(u);
 //MainWindow m = new MainWindow("Test");
@@ -82,7 +77,7 @@ public class BlockChain {
         walletB = new Billetera();
         Billetera coinbase = new Billetera();
         
->>>>>>> Stashed changes
+
         //create genesis transaction, which sends 100 NoobCoin to walletA: 
 		genesisTransaction = new Transaccion(coinbase.publicKey, walletA.publicKey, 100f, null);
 		genesisTransaction.generarSignature(coinbase.privateKey);	 //manually sign the genesis transaction	
@@ -103,6 +98,7 @@ public class BlockChain {
 		addBlock(block1);
 		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
 		System.out.println("WalletB's balance is: " + walletB.getBalance());
+                System.out.println("Logrado");
 
     }
 
