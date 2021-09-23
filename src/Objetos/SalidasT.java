@@ -13,15 +13,15 @@ import java.security.*;
 public class SalidasT {
     	public String id;
 	public PublicKey destinatario; //also known as the new owner of these coins.
-	public float monto; //the amount of coins they own
+	public float total; //the amount of coins they own
 	public String idPadre; //the id of the transaction this output was created in
 	
 	//Constructor
-	public SalidasT(PublicKey destinatario, float monto, String idPadre) {
+	public SalidasT(PublicKey destinatario, float total, String idPadre) {
 		this.destinatario = destinatario;
-		this.monto = monto;
+		this.total = total;
 		this.idPadre = idPadre;
-		this.id = StringUtil.applySha256(StringUtil.getStringFromKey(destinatario)+Float.toString(monto)+idPadre);
+		this.id = StringUtil.applySha256(StringUtil.getStringFromKey(destinatario)+Float.toString(total)+idPadre);
 	}
 	
 	//Check if coin belongs to you

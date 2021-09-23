@@ -47,7 +47,6 @@ public class Bloque {
 
     }
     public boolean addTransaccion(Transaccion1 transaction) {
-		//process transaction and check if valid, unless block is genesis block then ignore.
 		if(transaction == null) return false;		
 		if((idAntes != "0")) {
 			if((transaction.procesarTransaccion()!= true)) {

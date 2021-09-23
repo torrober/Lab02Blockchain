@@ -5,7 +5,9 @@
  */
 package Estructura;
 
-import java.util.Vector;
+import Objetos.Billetera;
+import Objetos.Transaccion1;
+import Objetos.Usuario;
 
 /**
  *
@@ -27,59 +29,57 @@ public class Arbol {
         this.raiz = raiz;
     }
 
-    public void insertarUsuario(Nodo a, String dato, Nodo r) {
+    public void insertarUsuario(Nodo a, Usuario dato) {
         NodoUsuario nuevo = new NodoUsuario(dato);
-        if (a == r) {
-            a.aumentarHijos(nuevo);
-        } else {
-            for (int i = 0; i < a.numHijos; i++) {
-                if (a.hijos[i] == (r)) {
-                    a.hijos[i].aumentarHijos(nuevo);
-                } else {
-                    insertarUsuario(a.hijos[i], dato, r);
-                }
-            }
-        }
+        a.hijos[1].aumentarHijos(nuevo);
     }
 
-    public void insertarTransaccion(Nodo a, String dato, Nodo r) {
-        NodoTransaccion nuevo = new NodoTransaccion(dato);
-        if (a == r) {
-            if (a.numHijos < 3) {
-                a.aumentarHijos(nuevo);
+    public void insertarBloque(Nodo a, Bloque b) {
+        NodoBloque block = new NodoBloque(b);
+        a.hijos[2].aumentarHijos(block);
+
+    }
+
+    public void insertarTransaccion(Nodo a, Transaccion1 t, int cont) {
+        NodoTransaccion nuevo = new NodoTransaccion(t);
+        for (int i = 0; i < a.hijos[2].numHijos; i++) {
+            if (a.hijos[2].hijos[i].numHijos < 3) {
+                a.hijos[2].hijos[i].aumentarHijos(nuevo);
+            } else {
+                insertarTransaccion(a.hijos[2].hijos[i], t, cont + 1);
             }
-        } else {
-            for (int i = 0; i < a.numHijos; i++) {
-                if (a.hijos[i] == (r)) {
-                    if (a.hijos[i].numHijos > 3) {
-                        a.hijos[i].aumentarHijos(nuevo);
-                    } else {
-                        Nodo bloque = new Nodo();
-                        bloque.aumentarHijos(nuevo);
-                        a.hijos[i].aumentarHijos(bloque);
-                    }
-                } else {
-                    insertarTransaccion(a.hijos[i], dato, r);
-                }
-            }
+        }
+        if (cont == a.hijos[2].numHijos) {
+            NodoBloque baux = (NodoBloque) a.hijos[2].hijos[cont];
+            Bloque b = new Bloque(baux.block.id);
+            insertarBloque(a, b);
+            a.hijos[2].hijos[cont + 1].aumentarHijos(nuevo);
         }
     }
 
     public void insertarEstado(Nodo a, NodoTransaccion t) {
         NodoEstado antes = new NodoEstado();
+        antes.setIdRemitente(t.transaccion.remitente);
+        antes.setIdDestinatario(t.transaccion.destinatario);
+        Billetera d = (Billetera) t.transaccion.destinatario;
+        Billetera r = (Billetera) t.transaccion.remitente;
+        antes.setBalanceDest(d.getBalance() - t.transaccion.monto);
+        antes.setBalanceRem(r.getBalance() + t.transaccion.monto);
         NodoEstado despues = new NodoEstado();
-        if (a == t) {
-            a.aumentarHijos(antes);
-            a.aumentarHijos(despues);
-        } else {
-            for (int i = 0; i < a.numHijos; i++) {
-                if (a.hijos[i] == (t)) {
-                    a.hijos[i].aumentarHijos(antes);
-                    a.hijos[i].aumentarHijos(despues);
+        despues.setIdRemitente(t.transaccion.remitente);
+        despues.setIdDestinatario(t.transaccion.destinatario);
+        despues.setBalanceDest(d.getBalance() - t.transaccion.monto);
+        despues.setBalanceRem(r.getBalance() + t.transaccion.monto);
+
+        for (int i = 0; i < a.hijos[2].numHijos; i++) {
+            for (int j = 0; j < a.hijos[2].hijos[i].numHijos; j++) {
+                if (a.hijos[2].hijos[i].hijos[j].equals(t)) {
+                    a.hijos[2].hijos[i].hijos[j].aumentarHijos(antes);
+                    a.hijos[2].hijos[i].hijos[j].aumentarHijos(despues);
                 } else {
-                    insertarEstado(a.hijos[i], t);
+                    insertarEstado(a.hijos[2].hijos[i].hijos[j], t);
                 }
-            } 
+            }
         }
     }
 

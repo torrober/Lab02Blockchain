@@ -5,16 +5,18 @@
  */
 package Estructura;
 
+import Objetos.Usuario;
+
 /**
  *
  * @author Jaider
  */
 public class NodoUsuario extends Nodo {
-    String nickname,idU;
+    Usuario user;
 
 
-    public NodoUsuario(String nickname) {
-        this.nickname = nickname;
+    public NodoUsuario(Usuario user) {
+        this.user = user;
         this.numHijos=0;
     }
 

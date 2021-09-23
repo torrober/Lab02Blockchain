@@ -47,7 +47,7 @@ public class Billetera {
             SalidasT UTXO = item.getValue();
             if (UTXO.verificarMoneda(publicKey)) { //if output belongs to me ( if coins belong to me )
                 UTXOs.put(UTXO.id, UTXO); //add it to our list of unspent transactions.
-                total += UTXO.monto;
+                total += UTXO.total;
             }
         }
         return total;
@@ -62,7 +62,7 @@ public class Billetera {
 		float total = 0;
 		for (Map.Entry<String, SalidasT> item: UTXOs.entrySet()){
 			SalidasT UTXO = item.getValue();
-			total += UTXO.monto;
+			total += UTXO.total;
 			inputs.add(new EntradasT(UTXO.id));
 			if(total > monto) break;
 		}

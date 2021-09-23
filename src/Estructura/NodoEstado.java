@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package Estructura;
-
+import java.security.*;
 /**
  *
  * @author Jaider
  */
 public class NodoEstado extends Nodo {
-    String idRemitente,idDestinatario;
+    PublicKey idRemitente,idDestinatario;
     double balanceRem,balanceDest;
 
     public NodoEstado() {
@@ -33,22 +33,6 @@ public class NodoEstado extends Nodo {
         this.hijos = hijos;
     }
 
-    public String getIdRemitente() {
-        return idRemitente;
-    }
-
-    public void setIdRemitente(String idRemitente) {
-        this.idRemitente = idRemitente;
-    }
-
-    public String getIdDestinatario() {
-        return idDestinatario;
-    }
-
-    public void setIdDestinatario(String idDestinatario) {
-        this.idDestinatario = idDestinatario;
-    }
-
     public double getBalanceRem() {
         return balanceRem;
     }
@@ -63,6 +47,22 @@ public class NodoEstado extends Nodo {
 
     public void setBalanceDest(double balanceDest) {
         this.balanceDest = balanceDest;
+    }
+
+    public PublicKey getIdRemitente() {
+        return idRemitente;
+    }
+
+    public void setIdRemitente(PublicKey idRemitente) {
+        this.idRemitente = idRemitente;
+    }
+
+    public PublicKey getIdDestinatario() {
+        return idDestinatario;
+    }
+
+    public void setIdDestinatario(PublicKey idDestinatario) {
+        this.idDestinatario = idDestinatario;
     }
     
 
