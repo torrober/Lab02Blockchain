@@ -5,7 +5,19 @@
  */
 package UI;
 
+import Objetos.EntradasT;
+import Objetos.Transaccion;
+import Objetos.Usuario;
+import java.util.Base64;
 import java.awt.Color;
+import java.io.IOException;
+import java.security.*;
+import java.security.interfaces.ECPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +26,7 @@ import java.awt.Color;
 public class NewTransaction extends javax.swing.JFrame {
 
     private int mouseX;
+    public String p;
 
     /**
      * Creates new form NewTransaction
@@ -21,6 +34,7 @@ public class NewTransaction extends javax.swing.JFrame {
     public NewTransaction(String walletID) {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
+        this.p = walletID;
     }
 
     /**
@@ -88,12 +102,9 @@ public class NewTransaction extends javax.swing.JFrame {
             .addGroup(tRShadowPane2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(tRShadowPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tRShadowPane2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap(251, Short.MAX_VALUE))
-                    .addGroup(tRShadowPane2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addContainerGap(251, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tRShadowPane2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -114,6 +125,11 @@ public class NewTransaction extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_wallet_24px.png"))); // NOI18N
 
         tRTextField1.setPlaceholder("ID de billetera");
+        tRTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tRTextField1ActionPerformed(evt);
+            }
+        });
 
         tRTextField2.setPlaceholder("Valor de la transferencia");
 
@@ -122,6 +138,11 @@ public class NewTransaction extends javax.swing.JFrame {
         tRButton1.setText("Realizar transacción");
         tRButton1.setBorderRadius(10);
         tRButton1.setColor(new java.awt.Color(245, 127, 23));
+        tRButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tRButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
         tRShadowPane1.setLayout(tRShadowPane1Layout);
@@ -190,6 +211,80 @@ public class NewTransaction extends javax.swing.JFrame {
         mouseX = evt.getX();
         mouseY = evt.getY();
     }//GEN-LAST:event_tRShadowPane1MousePressed
+
+    private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
+        byte[] publicBytes = Base64.getDecoder().decode(tRTextField1.getText());
+        KeyFactory factory = null;
+        try {
+            factory = KeyFactory.getInstance("ECDSA", "BC");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchProviderException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PublicKey a = new PublicKey() {
+            @Override
+            public String getAlgorithm() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public String getFormat() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public byte[] getEncoded() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        try {
+            a = (ECPublicKey) factory.generatePublic(new X509EncodedKeySpec(publicBytes));
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        byte[] publicBytes1 = Base64.getDecoder().decode(this.p);
+        KeyFactory factory1 = null;
+        try {
+            factory = KeyFactory.getInstance("ECDSA", "BC");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchProviderException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PublicKey b = new PublicKey() {
+            @Override
+            public String getAlgorithm() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public String getFormat() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public byte[] getEncoded() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        try {
+            b = (ECPublicKey) factory.generatePublic(new X509EncodedKeySpec(publicBytes1));
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Transaccion tr;
+        try {
+            tr = new Transaccion(b, a, Float.parseFloat(tRTextField2.getText()),new ArrayList<EntradasT>());
+        } catch (IOException ex) {
+            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tRButton1ActionPerformed
+
+    private void tRTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tRTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
