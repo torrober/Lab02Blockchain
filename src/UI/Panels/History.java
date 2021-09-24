@@ -5,9 +5,14 @@
  */
 package UI.Panels;
 
+import Objetos.Transaccion;
 import UI.Elementos.Header;
+import UI.Elementos.TransaccionesInfo;
 import UI.Elementos.TransferenciaBubble;
+import static Utils.FileUtils.readFile;
+import com.google.gson.Gson;
 import java.awt.Color;
+import java.util.Base64;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -31,6 +36,14 @@ public class History extends javax.swing.JPanel {
         addLeft(new TransferenciaBubble(20.400));
         addRight(new TransferenciaBubble(40.800));
         addLeft(new TransferenciaBubble(2.0300));
+        String file1 = readFile("transacciones.json");
+        if (file1 != "") {
+            Gson g = new Gson();
+            Transaccion[] o = g.fromJson(file1, Transaccion[].class);
+            for (Transaccion t : o) {
+                addRight(new TransferenciaBubble(t.monto));
+            }
+        }
     }
 
     /**

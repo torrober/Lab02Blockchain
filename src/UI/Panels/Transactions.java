@@ -5,9 +5,15 @@
  */
 package UI.Panels;
 
+import Estructura.Arbol;
+import Estructura.Nodo;
+import Objetos.Transaccion;
 import UI.Elementos.HeaderTransacciones;
 import UI.Elementos.TransaccionesInfo;
+import static Utils.FileUtils.readFile;
+import com.google.gson.Gson;
 import java.awt.Color;
+import java.util.Base64;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -30,6 +36,17 @@ public class Transactions extends javax.swing.JPanel {
         addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
         addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
         addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
+        String file1 = readFile("transacciones.json");
+        if (file1 != "") {
+            Gson g = new Gson();
+            Transaccion[] o = g.fromJson(file1, Transaccion[].class);
+            for (Transaccion t : o) {
+                byte[] byte_pubkey = t.destinatario.getEncoded();
+                System.out.println("\nBYTE KEY::: " + byte_pubkey);
+                String str_key = Base64.getEncoder().encodeToString(byte_pubkey);
+                addTransaction(new TransaccionesInfo(t.monto,str_key));
+            }
+        }
     }
 
     /**

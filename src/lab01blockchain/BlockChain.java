@@ -59,6 +59,7 @@ public class BlockChain {
         a.setRaiz(raiz);
         raiz.aumentarHijos(usuarios);
         raiz.aumentarHijos(bloques);
+        
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {
