@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,12 +29,15 @@ import java.util.logging.Logger;
 public class Usuario extends Persona {
 
     String nickname, contraseña, id;
+    transient PrivateKey privateKey;
+    transient PublicKey publicKey;
+    String privateKeyID, publicKeyID;
 
     public Usuario(String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
     }
 
-public Usuario(String nickname, String contraseña, String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
+    public Usuario(String nickname, String contraseña, String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
         this.nickname = nickname;
         //esta contraseña no tiene sabor, hora de echarle sal!
@@ -49,8 +54,21 @@ public Usuario(String nickname, String contraseña, String nombre, String apelli
             this.contraseña = StringUtil.applySha256(sal + contraseña);
         } catch (IOException ex) {
         }
+        Billetera b = new Billetera();
+        this.privateKey = b.getPrivateKey();
+        this.publicKey = b.getPublicKey();
+        this.publicKeyID = StringUtil.getStringFromKey(publicKey);
+        this.privateKeyID = StringUtil.getStringFromKey(privateKey);
         //escribe los usuarios al archivo
         FileUtils.WriteUserToFile(this);
+    }
+
+    public String getPrivateKey() {
+        return privateKeyID;
+    }
+
+    public String getPublicKey() {
+        return publicKeyID;
     }
 
     public String getNickname() {
@@ -123,5 +141,18 @@ public Usuario(String nickname, String contraseña, String nombre, String apelli
             ret = true;
         }
         return ret;
+    }
+
+    public static Usuario getUsuarioByNickName(String nickname) {
+        Usuario temp = null;
+        String users = FileUtils.readFile("usuarios.json");
+        Gson g = new Gson();        
+        Usuario[] usuarios = g.fromJson(users, Usuario[].class);
+        for (Usuario u : usuarios) {
+            if (u.getNickname().equals(nickname)) {
+                temp = u;
+            }
+        }
+        return temp;
     }
 }

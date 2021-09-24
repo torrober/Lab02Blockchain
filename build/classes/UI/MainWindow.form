@@ -176,6 +176,9 @@
                 </Property>
                 <Property name="itemName" type="java.lang.String" value="Mis datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuItem8MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

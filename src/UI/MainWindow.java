@@ -5,8 +5,10 @@
  */
 package UI;
 
+import Objetos.Usuario;
 import UI.Panels.History;
 import UI.Panels.Home;
+import UI.Panels.MyData;
 import UI.Panels.Transactions;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,14 +30,16 @@ public class MainWindow extends javax.swing.JFrame {
     ArrayList<String> pics = new ArrayList<>();
     private int mouseX;
     private int mouseY;
+    private Usuario u;
 
     /**
      * Creates new form JTestFrame
      */
-    public MainWindow(String user) {
+    public MainWindow(Usuario u) {
         initComponents();
+        this.u = u;
         setBackground(new Color(0, 0, 0, 0));
-        jLabel4.setText(user);
+        jLabel4.setText(u.getNickname());
         Home h = new Home();
         addPanel(h);
     }
@@ -129,6 +133,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_user_24px.png"))); // NOI18N
         menuItem8.setItemName("Mis datos");
+        menuItem8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuItem8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
         tRShadowPane1.setLayout(tRShadowPane1Layout);
@@ -333,6 +342,11 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         addPanel(new Transactions());
     }//GEN-LAST:event_menuItem7MouseClicked
+
+    private void menuItem8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem8MouseClicked
+        // TODO add your handling code here:
+        addPanel(new MyData(u));
+    }//GEN-LAST:event_menuItem8MouseClicked
 
     /**
      * @param args the command line arguments

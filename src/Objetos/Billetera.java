@@ -20,6 +20,14 @@ public class Billetera {
 
     public PrivateKey privateKey;
     public PublicKey publicKey;
+
+    public PrivateKey getPrivateKey() {
+        return privateKey;
+    }
+
+    public PublicKey getPublicKey() {
+        return publicKey;
+    }
     public HashMap<String, SalidasT> UTXOs = new HashMap<String, SalidasT>();
 
     public Billetera() {

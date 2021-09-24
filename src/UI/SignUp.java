@@ -288,7 +288,6 @@ public class SignUp extends javax.swing.JFrame {
         Date birthday = jDateChooser1.getDate();
         String strDate = DateFormat.getDateInstance().format(birthday);
         Sexo sexType = EnumUtils.parseSexo(String.valueOf(jComboBox4.getSelectedItem()));
-        //falta verificacion, ojo
         Usuario createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
         }catch (Exception e) {
             String tipdoc=jComboBox3.getSelectedItem().toString(); //convirtiendo el combbox de documentos a string para verificar

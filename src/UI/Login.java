@@ -219,7 +219,7 @@ public class Login extends javax.swing.JFrame {
             try {
                 if (Usuario.verificarUsuario(tRTextField1.getText(), tRPasswordField1.getText())) {
                     this.dispose();
-                    MainWindow m = new MainWindow(tRTextField1.getText());
+                    MainWindow m = new MainWindow(Usuario.getUsuarioByNickName(tRTextField1.getText()));
                     m.setVisible(true);
                 } else {
                     new Toast.ToastSuccessful(

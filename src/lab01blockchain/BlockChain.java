@@ -24,10 +24,12 @@ import Objetos.Transaccion;
 import Objetos.Usuario;
 import UI.Login;
 import Utils.FileUtils;
+import static Utils.FileUtils.readFile;
 import Utils.IPDetails;
 import Utils.StringUtil;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.security.Security;
 import java.util.ArrayList;
@@ -57,8 +59,15 @@ public class BlockChain {
         a.setRaiz(raiz);
         raiz.aumentarHijos(usuarios);
         raiz.aumentarHijos(bloques);
-        System.out.println("Logrado");
-
+        //lee los usuarios en el archivo
+        String file = readFile("usuarios.json");
+        if (file != "") {
+            Gson g = new Gson();
+            Usuario[] o = g.fromJson(file, Usuario[].class);
+            for (Usuario user : o) {
+                a.insertarUsuario(raiz, user);
+            }
+        }
         try {
             // TODO code application logic here
             UIManager.setLookAndFeel(new FlatLightLaf());
@@ -67,38 +76,23 @@ public class BlockChain {
         }
         Login m = new Login();
         m.setVisible(true);
-
-        //Usuario u = new Usuario("torro","aaaa","Roberto", "Rocha","6/22/2002",32534546,TipoDoc.cedCiudadania,Sexo.Masculino);
-        //FileUtils.WriteUserToFile(u);
-//MainWindow m = new MainWindow("Test");
-        //m.setVisible(true);
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         walletA = new Billetera();
         walletB = new Billetera();
         Billetera coinbase = new Billetera();
-        
-
         //create genesis transaction, which sends 100 NoobCoin to walletA: 
-		genesisTransaction = new Transaccion(coinbase.publicKey, walletA.publicKey, 100f, null);
-		genesisTransaction.generarSignature(coinbase.privateKey);	 //manually sign the genesis transaction	
-		genesisTransaction.idTransaccion = "0"; //manually set the transaction id
-		genesisTransaction.outputs.add(new SalidasT(genesisTransaction.destinatario, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
-		UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
-		
-		System.out.println("Creating and Mining Genesis block... ");
-		Bloque genesis = new Bloque("0");
-		genesis.addTransaccion(genesisTransaction);
-		addBlock(genesis);
-		
-		//testing
-		Bloque block1 = new Bloque(genesis.id);
-		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
-		System.out.println("\nWalletA is Attempting to send funds (40) to WalletB...");
-		block1.addTransaccion(walletA.sendFunds(walletB.publicKey, 40f));
-		addBlock(block1);
-		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
-		System.out.println("WalletB's balance is: " + walletB.getBalance());
-                System.out.println("Logrado");
+        genesisTransaction = new Transaccion(coinbase.publicKey, walletA.publicKey, 100f, null);
+        genesisTransaction.generarSignature(coinbase.privateKey);	 //manually sign the genesis transaction	
+        genesisTransaction.idTransaccion = "0"; //manually set the transaction id
+        genesisTransaction.outputs.add(new SalidasT(genesisTransaction.destinatario, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
+        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
+
+        Bloque genesis = new Bloque("0");
+        genesis.addTransaccion(genesisTransaction);
+        addBlock(genesis);
+        Bloque block1 = new Bloque(genesis.id);
+        block1.addTransaccion(walletA.sendFunds(walletB.publicKey, 40.000f));
+        addBlock(block1);
 
     }
 
@@ -163,9 +157,7 @@ public class BlockChain {
     }
 
     public static void addBlock(Bloque newBlock) {
-        System.out.println("minado");
         newBlock.minarbloque(diff);
-        System.out.println("minado1");
         cadena.add(newBlock);
 
     }
