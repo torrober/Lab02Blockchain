@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import Objetos.Transaccion;
 import Objetos.Usuario;
 import com.google.gson.Gson;
 import java.io.*;
@@ -42,6 +43,36 @@ public class FileUtils {
         }
         try {
             overwriteFile(nombre, usuariofinal);
+            success = true;
+        } catch (Exception e) {
+
+        }
+        return success;
+    }
+    
+        public static boolean WriteTransactionToFile(Transaccion t) {
+        String transaccionfinal = "";
+        String nombre = "transacciones.json";
+        boolean success = false;
+        if (!"".equals(readFile(nombre))) {
+            ArrayList<Transaccion> transacc = new ArrayList();
+            Gson g = new Gson();     
+            String file = readFile(nombre);
+            System.out.println(file);
+            Transaccion[] o = g.fromJson(file, Transaccion[].class);
+            for (Transaccion tr : o) {
+                transacc.add(tr);
+            }
+            transacc.add(t);
+            transaccionfinal = g.toJson(transacc);
+        } else {
+            Gson g = new Gson();
+            Transaccion[] firstTransaction = new Transaccion[1];
+            firstTransaction[0] = t;
+            transaccionfinal = g.toJson(firstTransaction);
+        }
+        try {
+            overwriteFile(nombre,transaccionfinal );
             success = true;
         } catch (Exception e) {
 
