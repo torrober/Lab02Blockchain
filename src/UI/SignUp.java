@@ -9,11 +9,14 @@ import Objetos.Sexo;
 import Objetos.TipoDoc;
 import Objetos.Usuario;
 import Utils.EnumUtils;
+import com.kingaspx.toast.util.Toast;
 import java.awt.Color;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -274,6 +277,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void tROutlineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tROutlineButton1ActionPerformed
         // TODO add your handling code here:
+        try {
         String user = tRTextField1.getText();
         String password = tRPasswordField1.getText();
         String name = tRTextField2.getText();
@@ -286,6 +290,17 @@ public class SignUp extends javax.swing.JFrame {
         Sexo sexType = EnumUtils.parseSexo(String.valueOf(jComboBox4.getSelectedItem()));
         //falta verificacion, ojo
         Usuario createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
+        }catch (Exception e) {
+            String tipdoc=jComboBox3.getSelectedItem().toString(); //convirtiendo el combbox de documentos a string para verificar
+            String tipsex=jComboBox4.getSelectedItem().toString(); //convirtiendo el combobox de sexo a string para verificar
+            if (tRTextField1.getText().isEmpty() || tRPasswordField1.getText().isEmpty() || tRTextField3.getText().isEmpty() || tRTextField4.getText().isEmpty() || tipdoc.equals("Seleccione género")) {
+            new Toast.ToastSuccessful(
+                    "Error",
+                    "Error",
+                    "Por favor llene los datos solicitados",
+                    Toast.LONG_DELAY);
+            }
+        }
         
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 
