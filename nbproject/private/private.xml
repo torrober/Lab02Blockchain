@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/UI/Panels/MyData.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/UI/MainWindow.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Utils/FileUtils.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/UI/NewTransaction.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Billetera.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Estructura/Bloque.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/lab01blockchain/BlockChain.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/Transaccion.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/EntradasT.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/UI/Panels/Transactions.java</file>
-            <file>file:/C:/Users/Jaider/Documents/GitHub/Lab01Blockchain/src/Objetos/SalidasT.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Panels/Home.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/lab01blockchain/BlockChain.java</file>
         </group>
     </open-files>
 </project-private>

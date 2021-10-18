@@ -83,8 +83,10 @@ public class BlockChain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(BlockChain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Login m = new Login();
-        m.setVisible(true);
+        //Login m = new Login();
+        //m.setVisible(true);
+        TestFrame t = new TestFrame();
+        t.setVisible(true);
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         walletA = new Billetera();
         walletB = new Billetera();

@@ -326,6 +326,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void menuItem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem6MouseClicked
@@ -335,7 +336,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void menuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem5MouseClicked
         // TODO add your handling code here:
-        addPanel(new Home());
+        Home home = new Home();
+        addPanel(home);
     }//GEN-LAST:event_menuItem5MouseClicked
 
     private void menuItem7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem7MouseClicked

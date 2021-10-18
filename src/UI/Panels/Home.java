@@ -5,39 +5,56 @@
  */
 package UI.Panels;
 
-import ComponentesUI.SlidePanel;
+import ComponentesUI.fx.NiceSliderShow;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Objects;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.web.WebView;
 import javax.swing.JPanel;
 
 /**
  *
  * @author guest
  */
-public class Home extends javax.swing.JPanel {
+public final class Home extends javax.swing.JPanel {
 
     /**
      * Creates new form Home
      */
+    private final JFXPanel jfxPanel = new JFXPanel();
+
     public Home() {
         initComponents();
-        ArrayList<String> list = new ArrayList<>();
-        list.add("/Assets/slide1.png");
-        list.add("/Assets/slide2.png");
-        list.add("/Assets/slide3.png");
-        SlidePanel p = new SlidePanel(list);
-        addPanel(p);
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(jfxPanel, BorderLayout.CENTER);
+        jfxPanel.setSize(jPanel1.getWidth() - 1, jPanel1.getHeight() - 1);
+        createScene();
     }
-    public void addPanel(JPanel p) {
-        p.setSize(596, 307);
-        p.setLocation(0,0);
-        p.setBackground(Color.white);
-        jPanel1.removeAll();
-        jPanel1.add(p, BorderLayout.CENTER);
-        jPanel1.revalidate();
-        jPanel1.repaint();
+
+    public void createScene() {
+        //es tecnicamente javafx, que tiene de malo?
+        //edit, el comentario de arriba se debia a que habia un navgador web, pero despues encontré un slider bonito que hace lo mismo en 100% javafx :p
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Image i1 = new Image(Objects.requireNonNull(getClass().getResource("/Assets/slide1.png")).toExternalForm());
+                Image i2 = new Image(Objects.requireNonNull(getClass().getResource("/Assets/slide2.png")).toExternalForm());
+                Image i3 = new Image(Objects.requireNonNull(getClass().getResource("/Assets/slide3.png")).toExternalForm());
+                NiceSliderShow sliderShow = new NiceSliderShow();
+                sliderShow.setImages(i1, i2, i3);
+                sliderShow.setPrefSize(600, 304);
+                sliderShow.initSliderShow(0.5,6);
+                jfxPanel.setScene(new Scene(sliderShow));
+                Platform.setImplicitExit(false);
+            }
+        });
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,7 +114,7 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         tRShadowPane4.setBackground(new java.awt.Color(255, 255, 255));
@@ -134,7 +151,7 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tRShadowPane5.setBackground(new java.awt.Color(255, 255, 255));
@@ -171,10 +188,8 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,7 +199,7 @@ public class Home extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
+            .addGap(0, 333, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -193,19 +208,24 @@ public class Home extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tRShadowPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(tRShadowPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 31, Short.MAX_VALUE)
-                .addComponent(tRShadowPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tRShadowPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tRShadowPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 31, Short.MAX_VALUE)
+                        .addComponent(tRShadowPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tRShadowPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tRShadowPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

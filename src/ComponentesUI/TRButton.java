@@ -53,6 +53,7 @@ public class TRButton extends JButton {
             public void mousePressed(MouseEvent me) {
                 targetSize = Math.max(getWidth(), getHeight()) * 2;
                 pressedPoint = me.getPoint();
+                animatSize = 0;
                 alpha = 0.5f;
                 if (animator.isRunning()) {
                     animator.stop();
@@ -76,6 +77,7 @@ public class TRButton extends JButton {
             }
         };
         animator = new Animator(500, target);
+        animator.setResolution(0);
     }
     private boolean over;
     private Color color = new Color(33, 150, 243, 255);

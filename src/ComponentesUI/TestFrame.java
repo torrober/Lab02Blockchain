@@ -27,41 +27,34 @@ public class TestFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tRSpeechBubble1 = new ComponentesUI.TRSpeechBubble();
+        tRButton1 = new ComponentesUI.TRButton();
+        tROutlineButton1 = new ComponentesUI.TROutlineButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tRSpeechBubble1.setBackground(new java.awt.Color(153, 255, 153));
-        tRSpeechBubble1.setForeground(new java.awt.Color(255, 102, 102));
-        tRSpeechBubble1.setBorderRadius(30);
-        tRSpeechBubble1.setDirection(ComponentesUI.SpeechBubbleDirection.RIGHT);
+        tRButton1.setText("tRButton1");
 
-        javax.swing.GroupLayout tRSpeechBubble1Layout = new javax.swing.GroupLayout(tRSpeechBubble1);
-        tRSpeechBubble1.setLayout(tRSpeechBubble1Layout);
-        tRSpeechBubble1Layout.setHorizontalGroup(
-            tRSpeechBubble1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
-        );
-        tRSpeechBubble1Layout.setVerticalGroup(
-            tRSpeechBubble1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 96, Short.MAX_VALUE)
-        );
+        tROutlineButton1.setText("tROutlineButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(tRSpeechBubble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(114, 114, 114)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tRButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tROutlineButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(tRSpeechBubble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(102, Short.MAX_VALUE)
+                .addComponent(tROutlineButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tRButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
 
         pack();
@@ -103,6 +96,7 @@ public class TestFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ComponentesUI.TRSpeechBubble tRSpeechBubble1;
+    private ComponentesUI.TRButton tRButton1;
+    private ComponentesUI.TROutlineButton tROutlineButton1;
     // End of variables declaration//GEN-END:variables
 }
