@@ -5,6 +5,7 @@
  */
 package UI.Elementos;
 
+import Objetos.Usuario;
 import UI.NewTransaction;
 
 /**
@@ -13,11 +14,14 @@ import UI.NewTransaction;
  */
 public class HeaderTransacciones extends javax.swing.JPanel {
 
+    private Usuario a;
+
     /**
      * Creates new form Header
      */
-    public HeaderTransacciones() {
+    public HeaderTransacciones(Usuario u) {
         initComponents();
+        this.a=u;
     }
 
     /**
@@ -98,7 +102,7 @@ public class HeaderTransacciones extends javax.swing.JPanel {
 
     private void tROutlineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tROutlineButton1ActionPerformed
         // TODO add your handling code here:
-        NewTransaction n = new NewTransaction("pruebaid");
+        NewTransaction n = new NewTransaction(a);
         n.setVisible(true);
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 

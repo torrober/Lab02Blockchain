@@ -26,15 +26,15 @@ import java.util.logging.Logger;
 public class NewTransaction extends javax.swing.JFrame {
 
     private int mouseX;
-    public String p;
+   private Usuario a;
 
     /**
      * Creates new form NewTransaction
      */
-    public NewTransaction(String walletID) {
+    public NewTransaction(Usuario u) {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        this.p = walletID;
+        this.a=u;
     }
 
     /**
@@ -213,77 +213,17 @@ public class NewTransaction extends javax.swing.JFrame {
     }//GEN-LAST:event_tRShadowPane1MousePressed
 
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
-        byte[] publicBytes = Base64.getDecoder().decode(tRTextField1.getText());
-        KeyFactory factory = null;
-        try {
-            factory = KeyFactory.getInstance("ECDSA", "BC");
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchProviderException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        PublicKey a = new PublicKey() {
-            @Override
-            public String getAlgorithm() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
 
-            @Override
-            public String getFormat() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public byte[] getEncoded() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
         try {
-            a = (ECPublicKey) factory.generatePublic(new X509EncodedKeySpec(publicBytes));
-        } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        byte[] publicBytes1 = Base64.getDecoder().decode(this.p);
-        KeyFactory factory1 = null;
-        try {
-            factory = KeyFactory.getInstance("ECDSA", "BC");
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchProviderException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        PublicKey b = new PublicKey() {
-            @Override
-            public String getAlgorithm() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public String getFormat() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public byte[] getEncoded() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        try {
-            b = (ECPublicKey) factory.generatePublic(new X509EncodedKeySpec(publicBytes1));
-        } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Transaccion tr;
-        try {
-            tr = new Transaccion(b, a, Float.parseFloat(tRTextField2.getText()),new ArrayList<EntradasT>());
+            Transaccion tr = new Transaccion( a.publicKey, tRTextField1.getText(), Float.parseFloat(tRTextField2.getText()),new ArrayList<>());
         } catch (IOException ex) {
             Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_tRButton1ActionPerformed
 
     private void tRTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRTextField1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tRTextField1ActionPerformed
 
     /**

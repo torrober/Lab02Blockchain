@@ -12,20 +12,20 @@ import java.security.*;
  */
 public class SalidasT {
     	public String id;
-	public PublicKey destinatario; //also known as the new owner of these coins.
+	public String destinatario; //also known as the new owner of these coins.
 	public float total; //the amount of coins they own
 	public String idPadre; //the id of the transaction this output was created in
 	
 	//Constructor
-	public SalidasT(PublicKey destinatario, float total, String idPadre) {
+	public SalidasT(String destinatario, float total, String idPadre) {
 		this.destinatario = destinatario;
 		this.total = total;
 		this.idPadre = idPadre;
-		this.id = StringUtil.applySha256(StringUtil.getStringFromKey(destinatario)+Float.toString(total)+idPadre);
+		this.id = StringUtil.applySha256((destinatario)+Float.toString(total)+idPadre);
 	}
 	
 	//Check if coin belongs to you
-	public boolean verificarMoneda(PublicKey publicKey) {
+	public boolean verificarMoneda(String publicKey) {
 		return (publicKey == destinatario);
 	}
 }

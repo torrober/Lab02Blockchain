@@ -8,6 +8,7 @@ package UI.Panels;
 import Estructura.Arbol;
 import Estructura.Nodo;
 import Objetos.Transaccion;
+import Objetos.Usuario;
 import UI.Elementos.HeaderTransacciones;
 import UI.Elementos.TransaccionesInfo;
 import static Utils.FileUtils.readFile;
@@ -25,10 +26,10 @@ public class Transactions extends javax.swing.JPanel {
     /**
      * Creates new form Transactions
      */
-    public Transactions() {
+    public Transactions(Usuario u) {
         initComponents();
         jPanel1.setLayout(new MigLayout("fillx"));
-        jPanel1.add(new HeaderTransacciones(), "wrap, w 572");
+        jPanel1.add(new HeaderTransacciones(u), "wrap, w 572");
         jPanel1.setBackground(Color.white);
         jPanel1.repaint();
         jPanel1.revalidate();
@@ -41,10 +42,7 @@ public class Transactions extends javax.swing.JPanel {
             Gson g = new Gson();
             Transaccion[] o = g.fromJson(file1, Transaccion[].class);
             for (Transaccion t : o) {
-                byte[] byte_pubkey = t.destinatario.getEncoded();
-                System.out.println("\nBYTE KEY::: " + byte_pubkey);
-                String str_key = Base64.getEncoder().encodeToString(byte_pubkey);
-                addTransaction(new TransaccionesInfo(t.monto,str_key));
+                addTransaction(new TransaccionesInfo(t.monto,t.idTransaccion));
             }
         }
     }

@@ -4,83 +4,35 @@
  * and open the template in the editor.
  */
 package Objetos;
-import java.io.IOException;
-import java.security.*;
-import java.security.spec.ECGenParameterSpec;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import lab01blockchain.BlockChain;
+
+import Utils.StringUtil;
 
 /**
  *
  * @author Jaider
  */
 public class Billetera {
-
-    public PrivateKey privateKey;
-    public PublicKey publicKey;
-
-    public PrivateKey getPrivateKey() {
-        return privateKey;
+    public String id = ""; 
+    public double saldo = 0;
+    public Billetera(Usuario r) {
+        //solo necesitamos un id
+        id = r.numDoc + r.nacimiento.split("/")[2]; 
+        System.out.println(r.numDoc + r.nacimiento.split("/")[2]);
+        this.id = StringUtil.applySha256(id);
+        //el id esta en sha256, pero nomas pa que parezca que es uno complejo xd
     }
 
-    public PublicKey getPublicKey() {
-        return publicKey;
-    }
-    public HashMap<String, SalidasT> UTXOs = new HashMap<String, SalidasT>();
-
-    public Billetera() {
-        generateKeyPair();
+    public String getId() {
+        return id;
     }
 
-    public void generateKeyPair() {
-        try {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("ECDSA", "BC");
-            SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-            ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1");
-            keyGen.initialize(ecSpec, random);
-            KeyPair keyPair = keyGen.generateKeyPair();
-            privateKey = keyPair.getPrivate();
-            publicKey = keyPair.getPublic();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    //returns balance and stores the UTXO's owned by this wallet in this.UTXOs
     public float getBalance() {
         float total = 0;
-        for (Map.Entry<String, SalidasT> item : BlockChain.UTXOs.entrySet()) {
-            SalidasT UTXO = item.getValue();
-            if (UTXO.verificarMoneda(publicKey)) { //if output belongs to me ( if coins belong to me )
-                UTXOs.put(UTXO.id, UTXO); //add it to our list of unspent transactions.
-                total += UTXO.total;
-            }
-        }
         return total;
     }
 
-    public Transaccion sendFunds(PublicKey destinatario, float monto) throws IOException {
-        if (getBalance() < monto) { 
-            return null;
-        }
-       ArrayList<EntradasT> inputs = new ArrayList<EntradasT>();
-    
-		float total = 0;
-		for (Map.Entry<String, SalidasT> item: UTXOs.entrySet()){
-			SalidasT UTXO = item.getValue();
-			total += UTXO.total;
-			inputs.add(new EntradasT(UTXO.id));
-			if(total > monto) break;
-		}
-		
-		Transaccion nueva = new Transaccion(publicKey, destinatario , monto, inputs);
-		nueva.generarSignature(privateKey);
-		
-		for(EntradasT input: inputs){
-			UTXOs.remove(input.idSalida);
-		}
-		return nueva;
-	}
+    public Transaccion sendFunds(String destinatario, float monto){
+        //nuevo cod de transacciones va acá:
+        return null;
     }
+}

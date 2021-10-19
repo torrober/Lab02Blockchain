@@ -14,8 +14,7 @@ import java.nio.file.Paths;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,10 +28,9 @@ import java.util.logging.Logger;
 public class Usuario extends Persona {
 
     String nickname, contraseña, id;
-    transient PrivateKey privateKey;
-    transient PublicKey publicKey;
-    String privateKeyID, publicKeyID;
-
+    public String publicKey;
+    private String privateKey;
+    private Billetera billetera;
     public Usuario(String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
     }
@@ -54,21 +52,19 @@ public class Usuario extends Persona {
             this.contraseña = StringUtil.applySha256(sal + contraseña);
         } catch (IOException ex) {
         }
-        Billetera b = new Billetera();
-        this.privateKey = b.getPrivateKey();
-        this.publicKey = b.getPublicKey();
-        this.publicKeyID = StringUtil.getStringFromKey(publicKey);
-        this.privateKeyID = StringUtil.getStringFromKey(privateKey);
+        Billetera b = new Billetera(this);
+        this.billetera = b;
         //escribe los usuarios al archivo
         FileUtils.WriteUserToFile(this);
+        
     }
 
     public String getPrivateKey() {
-        return privateKeyID;
+        return privateKey;
     }
 
     public String getPublicKey() {
-        return publicKeyID;
+        return publicKey;
     }
 
     public String getNickname() {
@@ -155,4 +151,9 @@ public class Usuario extends Persona {
         }
         return temp;
     }
+
+    public Billetera getBilletera() {
+        return billetera;
+    }
+    
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 import Utils.IPDetails;
 import java.io.IOException;
+import java.security.spec.InvalidKeySpecException;
 import lab01blockchain.BlockChain;
 
 /**
@@ -20,8 +21,8 @@ import lab01blockchain.BlockChain;
 public class Transaccion {
 
     public String idTransaccion,ip, lugar;
-    public PublicKey remitente;
-    public PublicKey destinatario;
+    public String remitente;
+    public String destinatario;
     public float monto;
     public double latitud, longitud;
     public long timestamp;
@@ -32,7 +33,7 @@ public class Transaccion {
 
     private static int secuencia = 0;
 
-    public Transaccion(PublicKey from, PublicKey to, float value, ArrayList<EntradasT> inputs) throws IOException {
+    public Transaccion(String from, String to, float value, ArrayList<EntradasT> inputs) throws IOException {
         this.remitente = from;
         this.destinatario = to;
         this.monto = value;
@@ -43,79 +44,16 @@ public class Transaccion {
         this.ip = obj.getString("ip");
         this.latitud = obj.getDouble("latitude");
         this.longitud = obj.getDouble("longitude");
+        this.idTransaccion=generarIDT();
     }
 
     private String generarIDT() {
         secuencia++; //increase the sequence to avoid 2 identical transactions having the same hash
         return StringUtil.applySha256(
-                StringUtil.getStringFromKey(remitente)
-                + StringUtil.getStringFromKey(destinatario)
+                remitente
+                + destinatario
                 + Float.toString(monto) + secuencia
         );
     }
-
-    public void generarSignature(PrivateKey privateKey) {
-        String data = StringUtil.getStringFromKey(remitente) + StringUtil.getStringFromKey(destinatario) + Float.toString(monto);
-        signature = StringUtil.applyECDSASig(privateKey, data);
-    }
-    
-    public boolean validarSignature() {
-	String data = StringUtil.getStringFromKey(remitente) + StringUtil.getStringFromKey(destinatario) + Float.toString(monto)	;
-	return StringUtil.verifyECDSASig(remitente, data, signature);
-}
-    
-    public boolean procesarTransaccion() {
-		
-		if(validarSignature() == false) {
-			return false;
-		}
-				
-		//gather transaction inputs (Make sure they are unspent):
-		for(EntradasT i : inputs) {
-			i.UTXO = BlockChain.UTXOs.get(i.idSalida);
-		}
-		//check if transaction is valid:
-		if(getvalorEntradas() < BlockChain.minimumTransaction) {
-			return false;
-		}
-		
-		//generate transaction outputs:
-		float leftOver = getvalorEntradas() - monto; //get value of inputs then the left over change:
-		idTransaccion = generarIDT();
-		outputs.add(new SalidasT( this.destinatario, monto,idTransaccion)); //send value to recipient
-		outputs.add(new SalidasT( this.remitente, leftOver,idTransaccion)); //send the left over 'change' back to sender		
-				
-		//add outputs to Unspent list
-		for(SalidasT o : outputs) {
-			BlockChain.UTXOs.put(o.id , o);
-		}
-		
-		//remove transaction inputs from UTXO lists as spent:
-		for(EntradasT i : inputs) {
-			if(i.UTXO == null) continue; //if Transaction can't be found skip it 
-			BlockChain.UTXOs.remove(i.UTXO.id);
-		}
-		
-		return true;
-	}
-	
-//returns sum of inputs(UTXOs) values
-	public float getvalorEntradas() {
-		float total = 0;
-		for(EntradasT i : inputs) {
-			if(i.UTXO == null) continue; //if Transaction can't be found skip it 
-			total += i.UTXO.total;
-		}
-		return total;
-	}
-
-//returns sum of outputs:
-	public float getvalorSalidas() {
-		float total = 0;
-		for(SalidasT o : outputs) {
-			total += o.total;
-		}
-		return total;
-	}
 
 }

@@ -228,9 +228,6 @@
         </Container>
         <Component class="ComponentesUI.TRTextField" name="tRTextField1">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="borderRadius" type="int" value="30"/>
             <Property name="placeholder" type="java.lang.String" value="Usuario"/>
           </Properties>

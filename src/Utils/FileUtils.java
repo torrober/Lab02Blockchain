@@ -42,10 +42,11 @@ public class FileUtils {
             usuariofinal = g.toJson(firstUser);
         }
         try {
+            System.out.println(usuariofinal);
             overwriteFile(nombre, usuariofinal);
             success = true;
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            System.out.println(e);
         }
         return success;
     }
@@ -120,7 +121,7 @@ public class FileUtils {
         } catch (FileNotFoundException e) {
             texto = "";
         } catch (IOException ex) {
-            
+            System.out.println(ex);
         }
         return texto;
     }

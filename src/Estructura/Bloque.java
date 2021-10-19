@@ -38,24 +38,4 @@ public class Bloque {
         return gId;
     }
 
-    public void minarbloque(int diff) {
-        String objetivo = new String(new char[diff]).replace('\0', '0');  
-        while (!id.substring(0, diff).equals(objetivo)) {
-            nonce++;
-            id = generarId();
-            System.out.println("minando");
-        }
-
-    }
-    public boolean addTransaccion(Transaccion transaction) {
-		if(transaction == null) return false;		
-		if((idAntes != "0")) {
-			if((transaction.procesarTransaccion()!= true)) {
-				return false;
-			}
-		}
-		transactions.add(transaction);
-		return true;
-	}
-
 }

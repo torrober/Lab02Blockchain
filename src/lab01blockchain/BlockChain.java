@@ -83,12 +83,14 @@ public class BlockChain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(BlockChain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Login m = new Login();
-        //m.setVisible(true);
-        TestFrame t = new TestFrame();
-        t.setVisible(true);
+        Login m = new Login();
+        m.setVisible(true);
+        //TestFrame t = new TestFrame();
+        //t.setVisible(true);
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-        walletA = new Billetera();
+        
+
+        /*walletA = new Billetera();
         walletB = new Billetera();
         Billetera coinbase = new Billetera();
         //create genesis transaction, which sends 100 NoobCoin to walletA: 
@@ -103,11 +105,11 @@ public class BlockChain {
         addBlock(genesis);
         Bloque block1 = new Bloque(genesis.id);
         block1.addTransaccion(walletA.sendFunds(walletB.publicKey, 40.000f));
-        addBlock(block1);
+        addBlock(block1);*/
 
     }
 
-    public static Boolean isChainValid() {
+    /*public static Boolean isChainValid() {
         Bloque actual;
         Bloque anterior;
         String hashTarget = new String(new char[diff]).replace('\0', '0');
@@ -171,5 +173,5 @@ public class BlockChain {
         newBlock.minarbloque(diff);
         cadena.add(newBlock);
 
-    }
+    }*/
 }

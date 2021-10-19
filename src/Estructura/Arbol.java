@@ -57,7 +57,7 @@ public class Arbol {
         }
     }
 
-    public void insertarEstado(Nodo a, NodoTransaccion t) {
+   /* public void insertarEstado(Nodo a, NodoTransaccion t) {
         NodoEstado antes = new NodoEstado();
         antes.setIdRemitente(t.transaccion.remitente);
         antes.setIdDestinatario(t.transaccion.destinatario);
@@ -87,5 +87,5 @@ public class Arbol {
         for (int i = 0; i < raiz.numHijos; i++) {
             recorrido(raiz.hijos[i]);
         }
-    }
+    }*/
 }

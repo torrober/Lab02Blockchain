@@ -8,8 +8,12 @@ package Utils;
 import Objetos.Transaccion;
 import java.security.MessageDigest;
 import java.security.*;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
+import org.bouncycastle.asn1.sec.ECPrivateKey;
+import org.bouncycastle.jce.interfaces.ECPublicKey;
 
 /**
  *
@@ -36,12 +40,15 @@ public class StringUtil {
         }
     }
 
-    public static byte[] applyECDSASig(PrivateKey privateKey, String input) {
+    public static byte[] applyECDSASig(String privateKey, String input) throws InvalidKeySpecException, NoSuchAlgorithmException, NoSuchProviderException {
+       byte[] byte_privkey = Base64.getDecoder().decode(privateKey);
+       KeyFactory factory = KeyFactory.getInstance("ECDSA", "BC");
+     PrivateKey private_key = (PrivateKey) (ECPrivateKey) factory.generatePublic(new X509EncodedKeySpec(byte_privkey));
         Signature dsa;
         byte[] output = new byte[0];
         try {
             dsa = Signature.getInstance("ECDSA", "BC");
-            dsa.initSign(privateKey);
+            dsa.initSign(private_key);
             byte[] strByte = input.getBytes();
             dsa.update(strByte);
             byte[] realSig = dsa.sign();
@@ -53,10 +60,13 @@ public class StringUtil {
     }
 
     //Verifies a String signature 
-    public static boolean verifyECDSASig(PublicKey publicKey, String data, byte[] signature) {
+    public static boolean verifyECDSASig(String publicKey, String data, byte[] signature) throws InvalidKeySpecException, NoSuchAlgorithmException, NoSuchProviderException {
+     byte[] byte_pubkey = Base64.getDecoder().decode(publicKey);
+     KeyFactory factory = KeyFactory.getInstance("ECDSA", "BC");
+     PublicKey public_key = (ECPublicKey) factory.generatePublic(new X509EncodedKeySpec(byte_pubkey));
         try {
             Signature ecdsaVerify = Signature.getInstance("ECDSA", "BC");
-            ecdsaVerify.initVerify(publicKey);
+            ecdsaVerify.initVerify(public_key);
             ecdsaVerify.update(data.getBytes());
             return ecdsaVerify.verify(signature);
         } catch (Exception e) {

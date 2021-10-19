@@ -288,7 +288,11 @@ public class SignUp extends javax.swing.JFrame {
         Date birthday = jDateChooser1.getDate();
         String strDate = DateFormat.getDateInstance().format(birthday);
         Sexo sexType = EnumUtils.parseSexo(String.valueOf(jComboBox4.getSelectedItem()));
-        Usuario createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
+        Usuario createdUser;
+            createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
+        MainWindow m = new MainWindow(createdUser);
+        m.setVisible(true);
+        this.dispose();
         }catch (Exception e) {
             String tipdoc=jComboBox3.getSelectedItem().toString(); //convirtiendo el combbox de documentos a string para verificar
             String tipsex=jComboBox4.getSelectedItem().toString(); //convirtiendo el combobox de sexo a string para verificar
@@ -300,6 +304,7 @@ public class SignUp extends javax.swing.JFrame {
                     Toast.LONG_DELAY);
             }
         }
+        
         
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 

@@ -231,6 +231,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_exit_24px.png"))); // NOI18N
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout tRShadowPane7Layout = new javax.swing.GroupLayout(tRShadowPane7);
         tRShadowPane7.setLayout(tRShadowPane7Layout);
@@ -342,13 +347,20 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void menuItem7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem7MouseClicked
         // TODO add your handling code here:
-        addPanel(new Transactions());
+        addPanel(new Transactions(u));
     }//GEN-LAST:event_menuItem7MouseClicked
 
     private void menuItem8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem8MouseClicked
         // TODO add your handling code here:
         addPanel(new MyData(u));
     }//GEN-LAST:event_menuItem8MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        Login l = new Login();
+        l.setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
