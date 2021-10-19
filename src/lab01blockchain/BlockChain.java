@@ -58,6 +58,16 @@ public class BlockChain {
         a.setRaiz(raiz);
         raiz.aumentarHijos(usuarios);
         raiz.aumentarHijos(bloques);
+        Usuario prueba1 = new Usuario("Prueba1", "1234", "nombre", "apellido", "01/02/1923", 123456, cedCiudadania, Masculino);
+        prueba1.getBilletera().setSaldo(100);
+        Usuario prueba2 = new Usuario("Prueba2", "1234", "nombre", "apellido", "01/02/1924", 123455, cedCiudadania, Masculino);
+        System.out.println(prueba1.getNickname());
+        System.out.println(prueba1.getContraseña());
+        System.out.println(prueba2.getNickname());
+        System.out.println(prueba2.getContraseña());
+        System.out.println(prueba2.getBilletera().getId());
+        System.out.println(prueba1.getBilletera().saldo);
+        System.out.println(prueba1.getBilletera().getBalance());
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {
