@@ -5,7 +5,12 @@
  */
 package Objetos;
 
+import Utils.FileUtils;
 import Utils.StringUtil;
+import com.google.gson.Gson;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,13 +31,30 @@ public class Billetera {
         return id;
     }
 
-    public float getBalance() {
-        float total = 0;
-        return total;
+    public double getSaldo() {
+        return saldo;
     }
+    
 
+    
     public void setSaldo(double saldo) {
-        this.saldo = saldo;
+        try {
+            //cambiar saldo en el archivo
+            Usuario temp = null;
+            String users = FileUtils.readFile("usuarios.json");
+            Gson g = new Gson();
+            Usuario[] usuarios = g.fromJson(users, Usuario[].class);
+            for (Usuario u : usuarios) {
+                if (u.getBilletera().id.equals(id)) {
+                    temp = u;
+                    u.getBilletera().saldo = saldo;
+                }
+            }
+            FileUtils.overwriteFile("usuarios.json", g.toJson(usuarios));
+            this.saldo = saldo;
+        } catch (IOException ex) {
+            Logger.getLogger(Billetera.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

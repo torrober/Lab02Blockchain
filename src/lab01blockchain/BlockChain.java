@@ -67,7 +67,7 @@ public class BlockChain {
         System.out.println(prueba2.getContraseña());
         System.out.println(prueba2.getBilletera().getId());
         System.out.println(prueba1.getBilletera().saldo);
-        System.out.println(prueba1.getBilletera().getBalance());
+        System.out.println(prueba1.getBilletera().getSaldo());
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {
@@ -96,90 +96,5 @@ public class BlockChain {
         //TestFrame t = new TestFrame();
         //t.setVisible(true);
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-        
-
-        /*walletA = new Billetera();
-        walletB = new Billetera();
-        Billetera coinbase = new Billetera();
-        //create genesis transaction, which sends 100 NoobCoin to walletA: 
-        genesisTransaction = new Transaccion(coinbase.publicKey, walletA.publicKey, 100f, null);
-        genesisTransaction.generarSignature(coinbase.privateKey);	 //manually sign the genesis transaction	
-        genesisTransaction.idTransaccion = "0"; //manually set the transaction id
-        genesisTransaction.outputs.add(new SalidasT(genesisTransaction.destinatario, genesisTransaction.monto, genesisTransaction.idTransaccion)); //manually add the Transactions Output
-        UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
-
-        Bloque genesis = new Bloque("0");
-        genesis.addTransaccion(genesisTransaction);
-        addBlock(genesis);
-        Bloque block1 = new Bloque(genesis.id);
-        block1.addTransaccion(walletA.sendFunds(walletB.publicKey, 40.000f));
-        addBlock(block1);*/
-
     }
-
-    /*public static Boolean isChainValid() {
-        Bloque actual;
-        Bloque anterior;
-        String hashTarget = new String(new char[diff]).replace('\0', '0');
-        HashMap<String, SalidasT> tempUTXOs = new HashMap<String, SalidasT>();
-        tempUTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));
-
-        for (int i = 1; i < cadena.size(); i++) {
-            actual = cadena.get(i);
-            anterior = cadena.get(i - 1);
-            if (!actual.id.equals(actual.generarId())) {
-                return false;
-            }
-            if (!anterior.id.equals(actual.idAntes)) {
-                return false;
-            }
-            if (!actual.id.substring(0, diff).equals(hashTarget)) {
-                return false;
-            }
-            SalidasT tempOutput;
-            for (int t = 0; t < actual.transactions.size(); t++) {
-                Transaccion currentTransaction = actual.transactions.get(t);
-
-                if (!currentTransaction.validarSignature()) {
-                    return false;
-                }
-                if (currentTransaction.getvalorEntradas() != currentTransaction.getvalorSalidas()) {
-                    return false;
-                }
-
-                for (EntradasT input : currentTransaction.inputs) {
-                    tempOutput = tempUTXOs.get(input.idSalida);
-
-                    if (tempOutput == null) {
-                        return false;
-                    }
-
-                    if (input.UTXO.total != tempOutput.total) {
-                        return false;
-                    }
-
-                    tempUTXOs.remove(input.idSalida);
-                }
-
-                for (SalidasT output : currentTransaction.outputs) {
-                    tempUTXOs.put(output.id, output);
-                }
-
-                if (currentTransaction.outputs.get(0).destinatario != currentTransaction.destinatario) {
-                    return false;
-                }
-                if (currentTransaction.outputs.get(1).destinatario != currentTransaction.remitente) {
-                    return false;
-                }
-
-            }
-        }
-        return true;
-    }
-
-    public static void addBlock(Bloque newBlock) {
-        newBlock.minarbloque(diff);
-        cadena.add(newBlock);
-
-    }*/
 }

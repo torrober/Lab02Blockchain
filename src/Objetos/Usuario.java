@@ -28,9 +28,8 @@ import java.security.SecureRandom;
 public class Usuario extends Persona {
 
     String nickname, contraseña, id;
-    public String publicKey;
-    private String privateKey;
     private Billetera billetera;
+    private String sal;
     public Usuario(String nombre, String apellido, String nacimiento, int numDoc, TipoDoc tipoDoc, Sexo sexo) {
         super(nombre, apellido, nacimiento, numDoc, tipoDoc, sexo);
     }
@@ -46,25 +45,16 @@ public class Usuario extends Persona {
         for (int i = 0; i < salt.length; i++) {
             sb.append(Integer.toString((salt[i] & 0xff) + 0x100, 16).substring(1));
         }
-        String sal = sb.toString();
-        try {
-            FileUtils.writeFile("sal.txt", sal);
-            this.contraseña = StringUtil.applySha256(sal + contraseña);
-        } catch (IOException ex) {
-        }
+        sal = sb.toString();
         Billetera b = new Billetera(this);
         this.billetera = b;
+        this.contraseña = StringUtil.applySha256(sal + contraseña);
         //escribe los usuarios al archivo
-        FileUtils.WriteUserToFile(this);
-        
+        FileUtils.WriteUserToFile(this);      
     }
 
-    public String getPrivateKey() {
-        return privateKey;
-    }
-
-    public String getPublicKey() {
-        return publicKey;
+    public String getSal() {
+        return sal;
     }
 
     public String getNickname() {
@@ -88,11 +78,8 @@ public class Usuario extends Persona {
             sb.append(Integer.toString((salt[i] & 0xff) + 0x100, 16).substring(1));
         }
         String sal = sb.toString();
-        try {
-            FileUtils.writeFile("sal.txt", sal);
-            this.contraseña = StringUtil.applySha256(sal + contraseña);
-        } catch (IOException ex) {
-        }
+        this.sal = sal;
+        this.contraseña = StringUtil.applySha256(sal + contraseña);
     }
 
     public String getId() {
@@ -107,34 +94,22 @@ public class Usuario extends Persona {
         String users = FileUtils.readFile("usuarios.json");
         Gson g = new Gson();
         int i = 0;
-        int j = 0;
-        int k = 0;
-        int l = 0;
         boolean ret = false;
         Usuario[] usuarios = g.fromJson(users, Usuario[].class);
         String contraseña = "";
         String sal = "";
         for (Usuario u : usuarios) {
-            i++;
             if (u.getNickname().equals(nickname)) {
-                j = i;
                 contraseña = u.getContraseña();
+                sal = u.getSal();
+                System.out.println(sal);
             }
-        }
-        try (BufferedReader br = new BufferedReader(new FileReader("sal.txt"))) {
-            {
-                for (String line; (line = br.readLine()) != null;) {
-                    l++;
-                    if (l == j) {
-                        sal = line;
-                    }
-                }
-            }
-        } catch (FileNotFoundException ex) {
-        } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
         }
         if (StringUtil.applySha256(sal + input).equals(contraseña)) {
             ret = true;
+        } else {
+            System.out.println(contraseña);
+            System.out.println(StringUtil.applySha256(sal + input));
         }
         return ret;
     }

@@ -6,6 +6,7 @@
 package UI.Panels;
 
 import ComponentesUI.fx.NiceSliderShow;
+import Objetos.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -28,11 +29,13 @@ public final class Home extends javax.swing.JPanel {
      */
     private final JFXPanel jfxPanel = new JFXPanel();
 
-    public Home() {
+    public Home(Usuario u) {
         initComponents();
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(jfxPanel, BorderLayout.CENTER);
         jfxPanel.setSize(jPanel1.getWidth() - 1, jPanel1.getHeight() - 1);
+        Double saldo = u.getBilletera().saldo;
+        jLabel6.setText("$"+saldo);
         createScene();
     }
 

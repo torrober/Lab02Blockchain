@@ -40,7 +40,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.u = u;
         setBackground(new Color(0, 0, 0, 0));
         jLabel4.setText(u.getNickname());
-        Home h = new Home();
+        Home h = new Home(u);
         addPanel(h);
     }
 
@@ -341,7 +341,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void menuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem5MouseClicked
         // TODO add your handling code here:
-        Home home = new Home();
+        Home home = new Home(u);
         addPanel(home);
     }//GEN-LAST:event_menuItem5MouseClicked
 
