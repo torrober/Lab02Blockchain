@@ -213,18 +213,18 @@ public class NewTransaction extends javax.swing.JFrame {
     }//GEN-LAST:event_tRShadowPane1MousePressed
 
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
-        a.getBilletera().setSaldo(100);
-                    try {
-                        a.getBilletera().setSaldo(a.getBilletera().saldo-Float.parseFloat(tRTextField2.getText()));
-                        Usuario user = getUsuarioByWalletID(tRTextField1.getText());
-                        System.out.println(user.getBilletera().saldo);
-                        user.getBilletera().setSaldo(user.getBilletera().saldo+Float.parseFloat(tRTextField2.getText()));
-                        System.out.println("Nuevo Saldo prueba2"+user.getBilletera().saldo);
-                        System.out.println("Nuevo Saldo prueba1"+a.getBilletera().saldo);
+
+        try {
+            a.getBilletera().setSaldo(a.getBilletera().saldo - Float.parseFloat(tRTextField2.getText()));
+            Usuario user = getUsuarioByWalletID(tRTextField1.getText());
+            System.out.println(user.getBilletera().saldo);
+            user.getBilletera().setSaldo(user.getBilletera().saldo + Float.parseFloat(tRTextField2.getText()));
+            System.out.println("Nuevo Saldo prueba2" + user.getBilletera().saldo);
+            System.out.println("Nuevo Saldo prueba1" + a.getBilletera().saldo);
             Transaccion tr = new Transaccion(a.getBilletera().id, tRTextField1.getText(), Float.parseFloat(tRTextField2.getText()));
         } catch (IOException ex) {
             Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_tRButton1ActionPerformed
 
     private void tRTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRTextField1ActionPerformed

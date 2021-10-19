@@ -336,7 +336,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void menuItem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem6MouseClicked
         // TODO add your handling code here:
-        addPanel(new History());
+        addPanel(new History(u));
     }//GEN-LAST:event_menuItem6MouseClicked
 
     private void menuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem5MouseClicked

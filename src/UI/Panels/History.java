@@ -6,6 +6,7 @@
 package UI.Panels;
 
 import Objetos.Transaccion;
+import Objetos.Usuario;
 import UI.Elementos.Header;
 import UI.Elementos.TransaccionesInfo;
 import UI.Elementos.TransferenciaBubble;
@@ -24,24 +25,24 @@ public class History extends javax.swing.JPanel {
     /**
      * Creates new form History
      */
-    public History() {
+    public History(Usuario u) {
         initComponents();
         jPanel1.setLayout(new MigLayout("fillx"));
         jPanel1.add(new Header("Mi historial"), "wrap, w 572");
         jPanel1.setBackground(Color.white);
         jPanel1.repaint();
         jPanel1.revalidate();
-        addLeft(new TransferenciaBubble(140.300));
-        addRight(new TransferenciaBubble(5.500));
-        addLeft(new TransferenciaBubble(20.400));
-        addRight(new TransferenciaBubble(40.800));
-        addLeft(new TransferenciaBubble(2.0300));
         String file1 = readFile("transacciones.json");
+
         if (file1 != "") {
             Gson g = new Gson();
             Transaccion[] o = g.fromJson(file1, Transaccion[].class);
             for (Transaccion t : o) {
-                addRight(new TransferenciaBubble(t.monto));
+                if(t.destinatario.equals(u.getBilletera().id)) {
+                    addLeft(new TransferenciaBubble(t.monto));
+                } else if (t.remitente.equals(u.getBilletera().id)){
+                    addRight(new TransferenciaBubble(t.monto));
+                }
             }
         }
     }

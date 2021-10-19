@@ -9,6 +9,8 @@ import ComponentesUI.fx.NiceSliderShow;
 import Objetos.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 import javafx.application.Platform;
@@ -35,13 +37,12 @@ public final class Home extends javax.swing.JPanel {
         jPanel1.add(jfxPanel, BorderLayout.CENTER);
         jfxPanel.setSize(jPanel1.getWidth() - 1, jPanel1.getHeight() - 1);
         Double saldo = u.getBilletera().saldo;
-        jLabel6.setText("$"+saldo);
+        NumberFormat formatter = new DecimalFormat("#0.000");
+        jLabel6.setText("$" + formatter.format(saldo));
         createScene();
     }
 
     public void createScene() {
-        //es tecnicamente javafx, que tiene de malo?
-        //edit, el comentario de arriba se debia a que habia un navgador web, pero despues encontré un slider bonito que hace lo mismo en 100% javafx :p
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

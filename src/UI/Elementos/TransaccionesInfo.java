@@ -19,7 +19,7 @@ public class TransaccionesInfo extends javax.swing.JPanel {
      */
     public TransaccionesInfo(double valor, String idTransaccion) {
         initComponents();
-        jLabel1.setText("Transacción - " + idTransaccion);
+        jLabel1.setText("Transacción");
         NumberFormat formatter = new DecimalFormat("#0.000");
         jLabel2.setText("$" + formatter.format(valor));
     }

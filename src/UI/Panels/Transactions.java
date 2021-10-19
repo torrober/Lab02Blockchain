@@ -33,16 +33,14 @@ public class Transactions extends javax.swing.JPanel {
         jPanel1.setBackground(Color.white);
         jPanel1.repaint();
         jPanel1.revalidate();
-        addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
-        addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
-        addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
-        addTransaction(new TransaccionesInfo(14.400, "huy90384y2023"));
         String file1 = readFile("transacciones.json");
         if (file1 != "") {
             Gson g = new Gson();
             Transaccion[] o = g.fromJson(file1, Transaccion[].class);
             for (Transaccion t : o) {
-                addTransaction(new TransaccionesInfo(t.monto,t.idTransaccion));
+                if(t.remitente.equals(u.getBilletera().id)) {
+                    addTransaction(new TransaccionesInfo(t.monto,t.idTransaccion));
+                }
             }
         }
     }

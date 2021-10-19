@@ -77,14 +77,6 @@ public class BlockChain {
                 a.insertarUsuario(raiz, user);
             }
         }
-        String file1 = readFile("transacciones.json");
-        if (file1 != "") {
-            Gson g = new Gson();
-            Transaccion[] o = g.fromJson(file1, Transaccion[].class);
-            for (Transaccion t : o) {
-                a.insertarTransaccion(raiz, t, 0);
-            }
-        }
         try {
             // TODO code application logic here
             UIManager.setLookAndFeel(new FlatLightLaf());

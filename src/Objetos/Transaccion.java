@@ -5,6 +5,7 @@
  */
 package Objetos;
 
+import Utils.FileUtils;
 import Utils.StringUtil;
 import java.security.*;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class Transaccion {
         this.longitud = obj.getDouble("longitude");
         this.idTransaccion=generarIDT();
         sendFunds(from,to,value);
+        FileUtils.WriteTransactionToFile(this);
     }
 
     private String generarIDT() {
