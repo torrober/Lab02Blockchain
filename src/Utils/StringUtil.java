@@ -40,44 +40,6 @@ public class StringUtil {
         }
     }
 
-    public static byte[] applyECDSASig(String privateKey, String input) throws InvalidKeySpecException, NoSuchAlgorithmException, NoSuchProviderException {
-       byte[] byte_privkey = Base64.getDecoder().decode(privateKey);
-       KeyFactory factory = KeyFactory.getInstance("ECDSA", "BC");
-     PrivateKey private_key = (PrivateKey) (ECPrivateKey) factory.generatePublic(new X509EncodedKeySpec(byte_privkey));
-        Signature dsa;
-        byte[] output = new byte[0];
-        try {
-            dsa = Signature.getInstance("ECDSA", "BC");
-            dsa.initSign(private_key);
-            byte[] strByte = input.getBytes();
-            dsa.update(strByte);
-            byte[] realSig = dsa.sign();
-            output = realSig;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return output;
-    }
-
-    //Verifies a String signature 
-    public static boolean verifyECDSASig(String publicKey, String data, byte[] signature) throws InvalidKeySpecException, NoSuchAlgorithmException, NoSuchProviderException {
-     byte[] byte_pubkey = Base64.getDecoder().decode(publicKey);
-     KeyFactory factory = KeyFactory.getInstance("ECDSA", "BC");
-     PublicKey public_key = (ECPublicKey) factory.generatePublic(new X509EncodedKeySpec(byte_pubkey));
-        try {
-            Signature ecdsaVerify = Signature.getInstance("ECDSA", "BC");
-            ecdsaVerify.initVerify(public_key);
-            ecdsaVerify.update(data.getBytes());
-            return ecdsaVerify.verify(signature);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static String getStringFromKey(Key key) {
-        return Base64.getEncoder().encodeToString(key.getEncoded());
-    }
-
     public static String getMerkleRoot(ArrayList<Transaccion> transactions) {
         int count = transactions.size();
         ArrayList<String> previousTreeLayer = new ArrayList<String>();

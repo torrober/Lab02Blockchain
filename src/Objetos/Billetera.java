@@ -31,8 +31,8 @@ public class Billetera {
         return total;
     }
 
-    public Transaccion sendFunds(String destinatario, float monto){
-        //nuevo cod de transacciones va acá:
-        return null;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
+
 }

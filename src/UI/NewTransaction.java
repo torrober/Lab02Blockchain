@@ -5,9 +5,9 @@
  */
 package UI;
 
-import Objetos.EntradasT;
 import Objetos.Transaccion;
 import Objetos.Usuario;
+import static Objetos.Usuario.getUsuarioByWalletID;
 import java.util.Base64;
 import java.awt.Color;
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class NewTransaction extends javax.swing.JFrame {
 
     private int mouseX;
-   private Usuario a;
+    private Usuario a;
 
     /**
      * Creates new form NewTransaction
@@ -34,7 +34,7 @@ public class NewTransaction extends javax.swing.JFrame {
     public NewTransaction(Usuario u) {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        this.a=u;
+        this.a = u;
     }
 
     /**
@@ -213,17 +213,20 @@ public class NewTransaction extends javax.swing.JFrame {
     }//GEN-LAST:event_tRShadowPane1MousePressed
 
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
-
-        try {
-            Transaccion tr = new Transaccion( a.publicKey, tRTextField1.getText(), Float.parseFloat(tRTextField2.getText()),new ArrayList<>());
+        if (a.getBilletera().saldo > Float.parseFloat(tRTextField2.getText())) {
+                    try {
+                        a.getBilletera().setSaldo(a.getBilletera().saldo-Float.parseFloat(tRTextField2.getText()));
+                        Usuario user = getUsuarioByWalletID(tRTextField1.getText());
+                        user.getBilletera().setSaldo(user.getBilletera().saldo+Float.parseFloat(tRTextField2.getText()));
+            Transaccion tr = new Transaccion(a.getBilletera().id, tRTextField1.getText(), Float.parseFloat(tRTextField2.getText()));
         } catch (IOException ex) {
             Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        }
     }//GEN-LAST:event_tRButton1ActionPerformed
 
     private void tRTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRTextField1ActionPerformed
-        
+
     }//GEN-LAST:event_tRTextField1ActionPerformed
 
     /**

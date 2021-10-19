@@ -151,7 +151,19 @@ public class Usuario extends Persona {
         }
         return temp;
     }
-
+    public static Usuario getUsuarioByWalletID(String id) {
+        Usuario temp = null;
+        String users = FileUtils.readFile("usuarios.json");
+        Gson g = new Gson();        
+        Usuario[] usuarios = g.fromJson(users, Usuario[].class);
+        for (Usuario u : usuarios) {
+            if (u.billetera.id.equals(id)) {
+                temp = u;
+            }
+        }
+        return temp;
+    }
+    
     public Billetera getBilletera() {
         return billetera;
     }

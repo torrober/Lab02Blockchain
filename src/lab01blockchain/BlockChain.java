@@ -16,10 +16,10 @@ import Estructura.Arbol;
 import Estructura.Bloque;
 import Estructura.Nodo;
 import Objetos.Billetera;
-import Objetos.EntradasT;
-import Objetos.SalidasT;
 import Objetos.Sexo;
+import static Objetos.Sexo.Masculino;
 import Objetos.TipoDoc;
+import static Objetos.TipoDoc.cedCiudadania;
 import Objetos.Transaccion;
 import Objetos.Usuario;
 import UI.Login;
@@ -48,7 +48,6 @@ public class BlockChain {
     public static Transaccion genesisTransaction;
     public static ArrayList<Bloque> cadena = new ArrayList<Bloque>();
     public static int diff = 0;
-    public static HashMap<String, SalidasT> UTXOs = new HashMap<String, SalidasT>();
     public static float minimumTransaction = 0.1f;
 
     public static void main(String[] args) throws IOException {
@@ -59,7 +58,6 @@ public class BlockChain {
         a.setRaiz(raiz);
         raiz.aumentarHijos(usuarios);
         raiz.aumentarHijos(bloques);
-        
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {

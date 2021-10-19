@@ -26,18 +26,12 @@ public class Transaccion {
     public float monto;
     public double latitud, longitud;
     public long timestamp;
-    public byte[] signature;
-
-    public ArrayList<EntradasT> inputs = new ArrayList<EntradasT>();
-    public ArrayList<SalidasT> outputs = new ArrayList<SalidasT>();
-
     private static int secuencia = 0;
 
-    public Transaccion(String from, String to, float value, ArrayList<EntradasT> inputs) throws IOException {
+    public Transaccion(String from, String to, float value) throws IOException {
         this.remitente = from;
         this.destinatario = to;
         this.monto = value;
-        this.inputs = inputs;
         String ipData = IPDetails.getIPData();
         JSONObject obj = new JSONObject(ipData);
         this.lugar = obj.getString("city") + ", " + obj.getString("country_name");
@@ -45,6 +39,7 @@ public class Transaccion {
         this.latitud = obj.getDouble("latitude");
         this.longitud = obj.getDouble("longitude");
         this.idTransaccion=generarIDT();
+        sendFunds(from,to,value);
     }
 
     private String generarIDT() {
@@ -54,6 +49,11 @@ public class Transaccion {
                 + destinatario
                 + Float.toString(monto) + secuencia
         );
+    }
+    
+       public Transaccion sendFunds(String remitente,String destinatario, float monto){
+        
+        return null;
     }
 
 }
