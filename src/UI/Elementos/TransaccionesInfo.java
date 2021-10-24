@@ -5,6 +5,8 @@
  */
 package UI.Elementos;
 
+import UI.WebFrame;
+import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -13,7 +15,7 @@ import java.text.NumberFormat;
  * @author guest
  */
 public class TransaccionesInfo extends javax.swing.JPanel {
-
+    String idTransaccion;
     /**
      * Creates new form TransferenciaInfo
      */
@@ -22,6 +24,7 @@ public class TransaccionesInfo extends javax.swing.JPanel {
         jLabel1.setText("Transacción");
         NumberFormat formatter = new DecimalFormat("#0.000");
         jLabel2.setText("$" + formatter.format(valor));
+        this.idTransaccion = idTransaccion;
     }
 
     /**
@@ -58,6 +61,11 @@ public class TransaccionesInfo extends javax.swing.JPanel {
         tRButton1.setText("Ver resumen");
         tRButton1.setBorderRadius(10);
         tRButton1.setColor(new java.awt.Color(245, 127, 23));
+        tRButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tRButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
         tRShadowPane1.setLayout(tRShadowPane1Layout);
@@ -99,6 +107,14 @@ public class TransaccionesInfo extends javax.swing.JPanel {
             .addComponent(tRShadowPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
+        // TODO add your handling code here:
+        File f = new File("resumen-"+idTransaccion+".html");
+        String path =  f.toURI().toString();
+        WebFrame w = new WebFrame(path);
+        w.setVisible(true);
+    }//GEN-LAST:event_tRButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

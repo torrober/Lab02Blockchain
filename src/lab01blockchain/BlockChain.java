@@ -35,6 +35,7 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 import org.json.JSONObject;
 
 /**
@@ -51,30 +52,19 @@ public class BlockChain {
     public static float minimumTransaction = 0.1f;
 
     public static void main(String[] args) throws IOException {
-        Arbol a = new Arbol();
-        Nodo raiz = new Nodo();
-        Nodo usuarios = new Nodo();
-        Nodo bloques = new Nodo();
-        a.setRaiz(raiz);
-        raiz.aumentarHijos(usuarios);
-        raiz.aumentarHijos(bloques);
         Usuario prueba1 = new Usuario("Prueba1", "1234", "nombre", "apellido", "01/02/1923", 123456, cedCiudadania, Masculino);
-        prueba1.getBilletera().setSaldo(100);
+        Billetera billeteraprueba1 = prueba1.getBilleteras().get(0);
+        billeteraprueba1.setSaldo(100.0);
         Usuario prueba2 = new Usuario("Prueba2", "1234", "nombre", "apellido", "01/02/1924", 123455, cedCiudadania, Masculino);
-        System.out.println(prueba1.getNickname());
-        System.out.println(prueba1.getContraseña());
-        System.out.println(prueba2.getNickname());
-        System.out.println(prueba2.getContraseña());
-        System.out.println(prueba2.getBilletera().getId());
-        System.out.println(prueba1.getBilletera().saldo);
-        System.out.println(prueba1.getBilletera().getSaldo());
+        System.out.println("Saldo total prueba 1 " +prueba1.getSaldoTotal());
+        System.out.println("Saldo total prueba2 " +prueba2.getSaldoTotal());
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {
             Gson g = new Gson();
             Usuario[] o = g.fromJson(file, Usuario[].class);
             for (Usuario user : o) {
-                a.insertarUsuario(raiz, user);
+                //a.insertarUsuario(raiz, user);
             }
         }
         try {

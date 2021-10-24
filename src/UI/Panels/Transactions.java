@@ -38,7 +38,7 @@ public class Transactions extends javax.swing.JPanel {
             Gson g = new Gson();
             Transaccion[] o = g.fromJson(file1, Transaccion[].class);
             for (Transaccion t : o) {
-                if(t.remitente.equals(u.getBilletera().id)) {
+                if(u.isWalletFromUser(t.remitente)) {
                     addTransaction(new TransaccionesInfo(t.monto,t.idTransaccion));
                 }
             }

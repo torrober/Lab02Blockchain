@@ -5,9 +5,11 @@
  */
 package UI;
 
+import Objetos.Billetera;
 import Objetos.Transaccion;
 import Objetos.Usuario;
 import static Objetos.Usuario.getUsuarioByWalletID;
+import com.kingaspx.toast.util.Toast;
 import java.util.Base64;
 import java.awt.Color;
 import java.io.IOException;
@@ -35,6 +37,9 @@ public class NewTransaction extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         this.a = u;
+        for (Billetera b : u.getBilleteras()) {
+            jComboBox1.addItem(b.id);
+        }
     }
 
     /**
@@ -56,6 +61,8 @@ public class NewTransaction extends javax.swing.JFrame {
         tRTextField2 = new ComponentesUI.TRTextField();
         jLabel5 = new javax.swing.JLabel();
         tRButton1 = new ComponentesUI.TRButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -144,6 +151,10 @@ public class NewTransaction extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_wallet_24px.png"))); // NOI18N
+
+        jComboBox1.setBorder(null);
+
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
         tRShadowPane1.setLayout(tRShadowPane1Layout);
         tRShadowPane1Layout.setHorizontalGroup(
@@ -160,7 +171,11 @@ public class NewTransaction extends javax.swing.JFrame {
                         .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tRTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tRTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(tRButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tRButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(tRShadowPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         tRShadowPane1Layout.setVerticalGroup(
@@ -168,17 +183,21 @@ public class NewTransaction extends javax.swing.JFrame {
             .addGroup(tRShadowPane1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(tRShadowPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tRTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tRTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(tRButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,15 +234,38 @@ public class NewTransaction extends javax.swing.JFrame {
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
 
         try {
-            a.getBilletera().setSaldo(a.getBilletera().saldo - Float.parseFloat(tRTextField2.getText()));
-            Usuario user = getUsuarioByWalletID(tRTextField1.getText());
-            System.out.println(user.getBilletera().saldo);
-            user.getBilletera().setSaldo(user.getBilletera().saldo + Float.parseFloat(tRTextField2.getText()));
-            System.out.println("Nuevo Saldo prueba2" + user.getBilletera().saldo);
-            System.out.println("Nuevo Saldo prueba1" + a.getBilletera().saldo);
-            Transaccion tr = new Transaccion(a.getBilletera().id, tRTextField1.getText(), Float.parseFloat(tRTextField2.getText()));
-        } catch (IOException ex) {
-            Logger.getLogger(NewTransaction.class.getName()).log(Level.SEVERE, null, ex);
+            ArrayList<Billetera> billeteras = a.getBilleteras();
+            Billetera remitente = null;
+            Billetera destinatario = null;
+            for (Billetera b : billeteras) {
+                if (b.id.equals(jComboBox1.getSelectedItem().toString())) {
+                    remitente = b;
+                }
+            }
+            Usuario destinatarioUser = Usuario.getUsuarioByWalletID(tRTextField1.getText());
+            System.out.println(destinatarioUser.getNickname());
+            for (Billetera b : destinatarioUser.getBilleteras()) {
+                if (b.id.equals(tRTextField1.getText())) {
+                    destinatario = b;
+                }
+            }
+            System.out.println(destinatarioUser.getNickname());
+            if (remitente != null && destinatario != null) {
+                remitente.setSaldo(remitente.saldo - Double.parseDouble(tRTextField2.getText()));
+                System.out.println(remitente.saldo);
+                destinatario.setSaldo(destinatario.saldo + Double.parseDouble(tRTextField2.getText()));
+                System.out.println("Nuevo Saldo prueba2 " + remitente.saldo);
+                System.out.println("Nuevo Saldo prueba1 " + destinatario.saldo);
+                Transaccion tr = new Transaccion(remitente.id, destinatario.id, Double.parseDouble(tRTextField2.getText()));
+            } else {
+            }
+        } catch (Exception ex) {
+            //System.out.println(ex);
+                            new Toast.ToastSuccessful(
+                            "Error",
+                            "Error",
+                            "Verifique Datos",
+                            Toast.LONG_DELAY);
         }
     }//GEN-LAST:event_tRButton1ActionPerformed
 
@@ -236,11 +278,13 @@ public class NewTransaction extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private ComponentesUI.TRButton tRButton1;
     private ComponentesUI.TRShadowPane tRShadowPane1;
     private ComponentesUI.TRShadowPane tRShadowPane2;

@@ -9,6 +9,7 @@ import Objetos.Usuario;
 import UI.Panels.History;
 import UI.Panels.Home;
 import UI.Panels.MyData;
+import UI.Panels.MyWallets;
 import UI.Panels.Transactions;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -69,6 +70,7 @@ public class MainWindow extends javax.swing.JFrame {
         menuItem6 = new UI.Elementos.MenuItem();
         menuItem7 = new UI.Elementos.MenuItem();
         menuItem8 = new UI.Elementos.MenuItem();
+        menuItem1 = new UI.Elementos.MenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -133,9 +135,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_user_24px.png"))); // NOI18N
         menuItem8.setItemName("Mis datos");
+        menuItem8.setName("Mis billeteras"); // NOI18N
         menuItem8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuItem8MouseClicked(evt);
+            }
+        });
+
+        menuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_wallet_24px.png"))); // NOI18N
+        menuItem1.setItemName("Mis billeteras");
+        menuItem1.setName("Mis billeteras"); // NOI18N
+        menuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuItem1MouseClicked(evt);
             }
         });
 
@@ -150,7 +162,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(menuItem5, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                     .addComponent(menuItem6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(menuItem8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tRShadowPane1Layout.setVerticalGroup(
@@ -165,8 +178,10 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuItem7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuItem8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -362,6 +377,11 @@ public class MainWindow extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    private void menuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem1MouseClicked
+        // TODO add your handling code here:
+        addPanel(new MyWallets(u));
+    }//GEN-LAST:event_menuItem1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -375,6 +395,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private UI.Elementos.MenuItem menuItem1;
     private UI.Elementos.MenuItem menuItem5;
     private UI.Elementos.MenuItem menuItem6;
     private UI.Elementos.MenuItem menuItem7;

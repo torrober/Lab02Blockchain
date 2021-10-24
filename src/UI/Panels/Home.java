@@ -36,7 +36,7 @@ public final class Home extends javax.swing.JPanel {
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(jfxPanel, BorderLayout.CENTER);
         jfxPanel.setSize(jPanel1.getWidth() - 1, jPanel1.getHeight() - 1);
-        Double saldo = u.getBilletera().saldo;
+        Double saldo = u.getSaldoTotal();
         NumberFormat formatter = new DecimalFormat("#0.000");
         jLabel6.setText("$" + formatter.format(saldo));
         createScene();

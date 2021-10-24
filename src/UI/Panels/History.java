@@ -38,9 +38,9 @@ public class History extends javax.swing.JPanel {
             Gson g = new Gson();
             Transaccion[] o = g.fromJson(file1, Transaccion[].class);
             for (Transaccion t : o) {
-                if(t.destinatario.equals(u.getBilletera().id)) {
+                if(u.isWalletFromUser(t.destinatario)) {
                     addLeft(new TransferenciaBubble(t.monto));
-                } else if (t.remitente.equals(u.getBilletera().id)){
+                } else if (u.isWalletFromUser(t.remitente)){
                     addRight(new TransferenciaBubble(t.monto));
                 }
             }
