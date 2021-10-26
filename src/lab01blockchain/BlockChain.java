@@ -5,38 +5,23 @@
  */
 package lab01blockchain;
 
-import org.bouncycastle.*;
-import ComponentesUI.TestFrame;
-import UI.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import Estructura.Arbol;
 import Estructura.Bloque;
-import Estructura.Nodo;
+import Estructura.Grafo;
 import Objetos.Billetera;
-import Objetos.Sexo;
 import static Objetos.Sexo.Masculino;
-import Objetos.TipoDoc;
 import static Objetos.TipoDoc.cedCiudadania;
 import Objetos.Transaccion;
 import Objetos.Usuario;
 import UI.Login;
-import Utils.FileUtils;
 import static Utils.FileUtils.readFile;
-import Utils.IPDetails;
-import Utils.StringUtil;
-import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.security.Security;
 import java.util.ArrayList;
-import java.util.HashMap;
-import javax.swing.JOptionPane;
-import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
-import org.json.JSONObject;
 
 /**
  *
@@ -52,6 +37,8 @@ public class BlockChain {
     public static float minimumTransaction = 0.1f;
 
     public static void main(String[] args) throws IOException {
+        Grafo grafo = new Grafo();
+        grafo.addVertice("SwingPay");
         Usuario prueba1 = new Usuario("Prueba1", "1234", "nombre", "apellido", "01/02/1923", 123456, cedCiudadania, Masculino);
         Billetera billeteraprueba1 = prueba1.getBilleteras().get(0);
         billeteraprueba1.setSaldo(100.0);
@@ -64,7 +51,8 @@ public class BlockChain {
             Gson g = new Gson();
             Usuario[] o = g.fromJson(file, Usuario[].class);
             for (Usuario user : o) {
-                //a.insertarUsuario(raiz, user);
+                grafo.addVerticeUsuario(user);
+                System.out.println("Grafo añadido");
             }
         }
         try {
@@ -73,10 +61,9 @@ public class BlockChain {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(BlockChain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Login m = new Login();
+        Login m = new Login(grafo);
         m.setVisible(true);
         //TestFrame t = new TestFrame();
         //t.setVisible(true);
-        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
     }
 }

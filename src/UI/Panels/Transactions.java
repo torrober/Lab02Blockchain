@@ -5,8 +5,8 @@
  */
 package UI.Panels;
 
-import Estructura.Arbol;
-import Estructura.Nodo;
+
+import Estructura.Grafo;
 import Objetos.Transaccion;
 import Objetos.Usuario;
 import UI.Elementos.HeaderTransacciones;
@@ -22,14 +22,15 @@ import net.miginfocom.swing.MigLayout;
  * @author guest
  */
 public class Transactions extends javax.swing.JPanel {
+    private Grafo g;
 
     /**
      * Creates new form Transactions
      */
-    public Transactions(Usuario u) {
+    public Transactions(Usuario u, Grafo grafo) {
         initComponents();
         jPanel1.setLayout(new MigLayout("fillx"));
-        jPanel1.add(new HeaderTransacciones(u), "wrap, w 572");
+        jPanel1.add(new HeaderTransacciones(u, grafo), "wrap, w 572");
         jPanel1.setBackground(Color.white);
         jPanel1.repaint();
         jPanel1.revalidate();

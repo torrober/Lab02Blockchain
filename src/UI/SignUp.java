@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Estructura.Grafo;
 import Objetos.Sexo;
 import Objetos.TipoDoc;
 import Objetos.Usuario;
@@ -26,11 +27,11 @@ public class SignUp extends javax.swing.JFrame {
 
     private int mouseX;
     private int mouseY;
-
+    private Grafo g;
     /**
      * Creates new form SignUp
      */
-    public SignUp() {
+    public SignUp(Grafo g) {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         //añadir Tipos de documento;
@@ -40,6 +41,7 @@ public class SignUp extends javax.swing.JFrame {
         for (int i = 0; i < Sexo.values().length; i++) {
             jComboBox4.addItem(Sexo.values()[i].toString());
         }
+        this.g = g;
     }
 
     /**
@@ -289,8 +291,9 @@ public class SignUp extends javax.swing.JFrame {
         String strDate = DateFormat.getDateInstance().format(birthday);
         Sexo sexType = EnumUtils.parseSexo(String.valueOf(jComboBox4.getSelectedItem()));
         Usuario createdUser;
-            createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
-        MainWindow m = new MainWindow(createdUser);
+        createdUser = new Usuario(user,password,name,surname,strDate,idnum,idType,sexType);
+        g.addVerticeUsuario(createdUser);
+        MainWindow m = new MainWindow(createdUser, g);
         m.setVisible(true);
         this.dispose();
         }catch (Exception e) {
@@ -324,40 +327,6 @@ public class SignUp extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SignUp().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox3;

@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Estructura.Grafo;
 import Objetos.Usuario;
 import UI.Panels.History;
 import UI.Panels.Home;
@@ -32,13 +33,14 @@ public class MainWindow extends javax.swing.JFrame {
     private int mouseX;
     private int mouseY;
     private Usuario u;
-
+    private Grafo g;
     /**
      * Creates new form JTestFrame
      */
-    public MainWindow(Usuario u) {
+    public MainWindow(Usuario u, Grafo g) {
         initComponents();
         this.u = u;
+        this.g = g;
         setBackground(new Color(0, 0, 0, 0));
         jLabel4.setText(u.getNickname());
         Home h = new Home(u);
@@ -362,7 +364,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void menuItem7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem7MouseClicked
         // TODO add your handling code here:
-        addPanel(new Transactions(u));
+        addPanel(new Transactions(u, g));
     }//GEN-LAST:event_menuItem7MouseClicked
 
     private void menuItem8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem8MouseClicked
@@ -373,7 +375,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         this.dispose();
-        Login l = new Login();
+        Login l = new Login(this.g);
         l.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 

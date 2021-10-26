@@ -18,7 +18,6 @@ public class Bloque {
 
     public String id;
     public String idAntes;
-    public String merkleRoot;
     public ArrayList<Transaccion> transactions = new ArrayList<Transaccion>();
     public long timeStamp;
     public int nonce;
@@ -33,7 +32,6 @@ public class Bloque {
         String gId = StringUtil.applySha256(
                 idAntes
                 + Long.toString(timeStamp)
-                + merkleRoot
         );
         return gId;
     }

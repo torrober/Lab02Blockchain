@@ -5,6 +5,7 @@
  */
 package UI.Elementos;
 
+import Estructura.Grafo;
 import Objetos.Usuario;
 import UI.NewTransaction;
 
@@ -15,13 +16,14 @@ import UI.NewTransaction;
 public class HeaderTransacciones extends javax.swing.JPanel {
 
     private Usuario a;
-
+    private Grafo g;
     /**
      * Creates new form Header
      */
-    public HeaderTransacciones(Usuario u) {
+    public HeaderTransacciones(Usuario u, Grafo g) {
         initComponents();
         this.a=u;
+        this.g = g;
     }
 
     /**
@@ -102,7 +104,7 @@ public class HeaderTransacciones extends javax.swing.JPanel {
 
     private void tROutlineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tROutlineButton1ActionPerformed
         // TODO add your handling code here:
-        NewTransaction n = new NewTransaction(a);
+        NewTransaction n = new NewTransaction(a, g);
         n.setVisible(true);
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 

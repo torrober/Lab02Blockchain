@@ -11,9 +11,7 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.Base64;
-import org.bouncycastle.asn1.sec.ECPrivateKey;
-import org.bouncycastle.jce.interfaces.ECPublicKey;
+
 
 /**
  *

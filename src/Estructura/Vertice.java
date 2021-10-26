@@ -5,6 +5,7 @@
  */
 package Estructura;
 
+import Objetos.Usuario;
 import java.util.ArrayList;
 
 /**
@@ -14,19 +15,40 @@ import java.util.ArrayList;
 public class Vertice {
 
     String nombre;
+    Bloque b;
+    Usuario u;
     ArrayList<Vertice> vecinos;
     int x, y;
     boolean visitado;
     int distancia;
 
-    public Vertice(String nombre, int x, int y) {
+    public Vertice(String nombre) {
         this.nombre = nombre;
         vecinos = new ArrayList();
-        this.x = x;
-        this.y = y;
     }
 
+    public Vertice(Usuario u) {
+        this.u = u;
+        vecinos = new ArrayList();
+    }
+
+    public Vertice(Bloque b) {
+        this.b = b;
+        vecinos = new ArrayList();
+    }
+    
+    
+    
     public void addVecino(Vertice vecino) {
         vecinos.add(vecino);
     }
+
+    public Bloque getBloque() {
+        return b;
+    }
+
+    public Usuario getUsuario() {
+        return u;
+    }
+    
 }

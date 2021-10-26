@@ -5,12 +5,11 @@
  */
 package UI;
 
+import Estructura.Grafo;
 import Objetos.Usuario;
 import com.kingaspx.toast.util.Toast;
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import org.material.component.swingsnackbar.SnackBar;
-import org.material.component.swingsnackbar.action.AbstractSnackBarAction;
+
 
 /**
  *
@@ -20,11 +19,12 @@ public class Login extends javax.swing.JFrame {
 
     private int mouseX;
     private int mouseY;
-
+    private Grafo g;
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(Grafo g) {
+        this.g = g;
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
     }
@@ -219,7 +219,7 @@ public class Login extends javax.swing.JFrame {
             try {
                 if (Usuario.verificarUsuario(tRTextField1.getText(), tRPasswordField1.getText())) {
                     this.dispose();
-                    MainWindow m = new MainWindow(Usuario.getUsuarioByNickName(tRTextField1.getText()));
+                    MainWindow m = new MainWindow(Usuario.getUsuarioByNickName(tRTextField1.getText()), g);
                     m.setVisible(true);
                 } else {
                     new Toast.ToastSuccessful(
@@ -236,7 +236,7 @@ public class Login extends javax.swing.JFrame {
     private void tROutlineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tROutlineButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        SignUp s = new SignUp();
+        SignUp s = new SignUp(this.g);
         s.setVisible(true);
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 
@@ -245,40 +245,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

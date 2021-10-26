@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Estructura;
 
+import Objetos.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -29,8 +25,16 @@ public class Grafo {
         this.vertices = vertices;
     }
 
-    public void addVertice(String info, int x, int y) {
-        vertices.add(new Vertice(info, x, y));
+    public void addVertice(String info) {
+        vertices.add(new Vertice(info));
+    }
+
+    public void addVerticeUsuario(Usuario info) {
+        vertices.add(new Vertice(info));
+    }
+
+    public void addVerticeBloque(Bloque info) {
+        vertices.add(new Vertice(info));
     }
 
     public void addArista(Vertice inicio, Vertice fin, int peso) {
@@ -53,6 +57,24 @@ public class Grafo {
     public Vertice getVertice(String nombre) {
         for (Vertice v : vertices) {
             if (v.nombre.equals(nombre)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public Vertice getUsuarioFromVertice(Usuario u) {
+        for (Vertice v : vertices) {
+            if (v.getUsuario().getNickname().equals(u.getNickname())) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public Vertice getBloqueFromVertice(Bloque b) {
+        for (Vertice v : vertices) {
+            if (v.getBloque().equals(b.id)) {
                 return v;
             }
         }

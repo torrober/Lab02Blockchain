@@ -4,14 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Elementos/MenuItem.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Elementos/BilleteraInfo.java</file>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/MainWindow.java</file>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Elementos/TransaccionesInfo.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/Utils/StringUtil.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/lab01blockchain/BlockChain.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/PFrame.java</file>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Elementos/HeaderBilleteras.java</file>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/NewTransaction.java</file>
             <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Panels/Transactions.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/Objetos/Usuario.java</file>
-            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/UI/Panels/MyWallets.java</file>
+            <file>file:/C:/Users/graba/Documents/NetBeansProjects/Lab01Blockchain/src/Objetos/Transaccion.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Estructura.Grafo;
 import Objetos.Billetera;
 import Objetos.Transaccion;
 import Objetos.Usuario;
@@ -29,11 +30,11 @@ public class NewTransaction extends javax.swing.JFrame {
 
     private int mouseX;
     private Usuario a;
-
+    private Grafo g;
     /**
      * Creates new form NewTransaction
      */
-    public NewTransaction(Usuario u) {
+    public NewTransaction(Usuario u, Grafo g) {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         this.a = u;
