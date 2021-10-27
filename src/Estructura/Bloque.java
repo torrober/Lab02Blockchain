@@ -20,7 +20,6 @@ public class Bloque {
     public String idAntes;
     public ArrayList<Transaccion> transactions = new ArrayList<Transaccion>();
     public long timeStamp;
-    public int nonce;
 
     public Bloque(String antes) {
         this.idAntes = antes;

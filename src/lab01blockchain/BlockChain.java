@@ -14,7 +14,6 @@ import Estructura.Grafo;
 import Objetos.Billetera;
 import static Objetos.Sexo.Masculino;
 import static Objetos.TipoDoc.cedCiudadania;
-import Objetos.Transaccion;
 import Objetos.Usuario;
 import UI.Login;
 import static Utils.FileUtils.readFile;
@@ -29,12 +28,7 @@ import java.util.ArrayList;
  */
 public class BlockChain {
 
-    public static Billetera walletA;
-    public static Billetera walletB;
-    public static Transaccion genesisTransaction;
     public static ArrayList<Bloque> cadena = new ArrayList<Bloque>();
-    public static int diff = 0;
-    public static float minimumTransaction = 0.1f;
 
     public static void main(String[] args) throws IOException {
         Grafo grafo = new Grafo();

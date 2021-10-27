@@ -62,7 +62,7 @@ public class Transaccion {
     }
 
     private String generarIDT() {
-        secuencia++; //increase the sequence to avoid 2 identical transactions having the same hash
+        secuencia++; 
         return StringUtil.applySha256(
                 remitente
                 + destinatario
