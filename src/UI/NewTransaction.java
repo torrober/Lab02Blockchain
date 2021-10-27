@@ -5,7 +5,9 @@
  */
 package UI;
 
+import Estructura.Bloque;
 import Estructura.Grafo;
+import Estructura.Vertice;
 import Objetos.Billetera;
 import Objetos.Transaccion;
 import Objetos.Usuario;
@@ -31,6 +33,7 @@ public class NewTransaction extends javax.swing.JFrame {
     private int mouseX;
     private Usuario a;
     private Grafo g;
+
     /**
      * Creates new form NewTransaction
      */
@@ -255,18 +258,35 @@ public class NewTransaction extends javax.swing.JFrame {
                 remitente.setSaldo(remitente.saldo - Double.parseDouble(tRTextField2.getText()));
                 System.out.println(remitente.saldo);
                 destinatario.setSaldo(destinatario.saldo + Double.parseDouble(tRTextField2.getText()));
-                System.out.println("Nuevo Saldo prueba2 " + remitente.saldo);
-                System.out.println("Nuevo Saldo prueba1 " + destinatario.saldo);
                 Transaccion tr = new Transaccion(remitente.id, destinatario.id, Double.parseDouble(tRTextField2.getText()));
+                if (g.getUltimoBloque() != null) {
+                    if (!g.getUltimoBloque().addTransaction(tr)) {
+                        Bloque ant = g.getUltimoBloque();
+                        Bloque b = new Bloque(g.getUltimoBloque().id);
+                        b.addTransaction(tr);
+                        g.addVerticeBloque(b);
+                        g.addArista(g.getVerticeFromBloque(ant),g.getVerticeFromBloque(b),0);
+                    } else {
+                        g.getUltimoBloque().addTransaction(tr);
+                    }
+                } else {
+                    //primer bloque
+                    Bloque b = new Bloque("");
+                    b.addTransaction(tr);
+                    g.addVerticeBloque(b);
+                    Vertice inicio = g.getVertice("SwingPay");
+                    Vertice fin = g.getVerticeFromBloque(b);
+                    g.addArista(inicio, fin, 0);
+                }
             } else {
             }
         } catch (Exception ex) {
             //System.out.println(ex);
-                            new Toast.ToastSuccessful(
-                            "Error",
-                            "Error",
-                            "Verifique Datos",
-                            Toast.LONG_DELAY);
+            new Toast.ToastSuccessful(
+                    "Error",
+                    "Error",
+                    "Verifique Datos",
+                    Toast.LONG_DELAY);
         }
     }//GEN-LAST:event_tRButton1ActionPerformed
 

@@ -12,12 +12,14 @@ public class Grafo {
 
     ArrayList<Arista> aristas;
     ArrayList<Vertice> vertices;
-    int[][] distancia;
-    String dfs;
+    ArrayList<Bloque> bloquesAux;
+    ArrayList<Usuario> usuariosAux;
 
     public Grafo() {
         aristas = new ArrayList();
         vertices = new ArrayList();
+        bloquesAux = new ArrayList();
+        usuariosAux = new ArrayList();
     }
 
     public Grafo(ArrayList<Arista> aristas, ArrayList<Vertice> vertices) {
@@ -31,10 +33,12 @@ public class Grafo {
 
     public void addVerticeUsuario(Usuario info) {
         vertices.add(new Vertice(info));
+        usuariosAux.add(info);
     }
 
     public void addVerticeBloque(Bloque info) {
         vertices.add(new Vertice(info));
+        bloquesAux.add(info);
     }
 
     public void addArista(Vertice inicio, Vertice fin, int peso) {
@@ -63,19 +67,23 @@ public class Grafo {
         return null;
     }
 
-    public Vertice getUsuarioFromVertice(Usuario u) {
+    public Vertice getVerticeFromUsuario(Usuario u) {
         for (Vertice v : vertices) {
-            if (v.getUsuario().getNickname().equals(u.getNickname())) {
-                return v;
+            if (v.getUsuario() != null) {
+                if (v.getUsuario().getNickname().equals(u.getNickname())) {
+                    return v;
+                }
             }
         }
         return null;
     }
 
-    public Vertice getBloqueFromVertice(Bloque b) {
+    public Vertice getVerticeFromBloque(Bloque b) {
         for (Vertice v : vertices) {
-            if (v.getBloque().equals(b.id)) {
-                return v;
+            if (v.getBloque() != null) {
+                if (v.getBloque().equals(b.id)) {
+                    return v;
+                }
             }
         }
         return null;
@@ -98,5 +106,23 @@ public class Grafo {
             }
         }
         return adyacentes;
+    }
+
+    public Bloque getUltimoBloque() {
+        if (bloquesAux.size() == 0) {
+            return null;
+        } else {
+            int ultimoElemPos = bloquesAux.size() - 1;
+            return bloquesAux.get(ultimoElemPos);
+        }
+    }
+
+    public Usuario getLastUsuario() {
+        if (usuariosAux.size() == 0) {
+            return null;
+        } else {
+            int ultimoElemPos = usuariosAux.size() - 1;
+            return usuariosAux.get(ultimoElemPos);
+        }
     }
 }

@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import Estructura.Bloque;
 import Estructura.Grafo;
+import Estructura.Vertice;
 import Objetos.Billetera;
 import static Objetos.Sexo.Masculino;
 import static Objetos.TipoDoc.cedCiudadania;
@@ -33,20 +34,28 @@ public class BlockChain {
     public static void main(String[] args) throws IOException {
         Grafo grafo = new Grafo();
         grafo.addVertice("SwingPay");
-        Usuario prueba1 = new Usuario("Prueba1", "1234", "nombre", "apellido", "01/02/1923", 123456, cedCiudadania, Masculino);
-        Billetera billeteraprueba1 = prueba1.getBilleteras().get(0);
-        billeteraprueba1.setSaldo(100.0);
-        Usuario prueba2 = new Usuario("Prueba2", "1234", "nombre", "apellido", "01/02/1924", 123455, cedCiudadania, Masculino);
-        System.out.println("Saldo total prueba 1 " +prueba1.getSaldoTotal());
-        System.out.println("Saldo total prueba2 " +prueba2.getSaldoTotal());
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {
             Gson g = new Gson();
             Usuario[] o = g.fromJson(file, Usuario[].class);
             for (Usuario user : o) {
-                grafo.addVerticeUsuario(user);
-                System.out.println("Grafo añadido");
+                try {
+                    Vertice ant = grafo.getVerticeFromUsuario(grafo.getLastUsuario());
+                    grafo.addVerticeUsuario(user);
+                    Vertice desp = grafo.getVerticeFromUsuario(user);
+                    grafo.addArista(ant, desp, 0);
+                    System.out.println("Grafo añadido");
+                } catch (NullPointerException ex) {
+                    Vertice ant = grafo.getVertice("SwingPay");
+                    System.out.println("1er grafo");
+                    grafo.addVerticeUsuario(user);
+                    Vertice desp = grafo.getVerticeFromUsuario(user);
+                    grafo.addArista(ant, desp, 0);
+                    System.out.println("Grafo añadido");
+                    
+                }
+
             }
         }
         try {

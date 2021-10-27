@@ -35,4 +35,13 @@ public class Bloque {
         return gId;
     }
 
+    public boolean addTransaction(Transaccion transaction) {
+        if(this.transactions.size() < 2){
+            this.transactions.add(transaction);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
