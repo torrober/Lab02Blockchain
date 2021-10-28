@@ -6,7 +6,10 @@
 package Estructura;
 
 import Objetos.Transaccion;
+import Utils.FileUtils;
 import Utils.StringUtil;
+import com.google.gson.Gson;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,12 +39,30 @@ public class Bloque {
     }
 
     public boolean addTransaction(Transaccion transaction) {
-        if(this.transactions.size() < 2){
+        if (this.transactions.size() < 2) {
             this.transactions.add(transaction);
             return true;
         } else {
             return false;
         }
     }
-    
+
+    public static void overwriteTransaction(Bloque bl) throws IOException {
+        Bloque temp = null;
+        String users = FileUtils.readFile("bloques.json");
+        System.out.println(users);
+        Gson g = new Gson();
+        int pos = 0;
+        int j = 0;
+        Bloque[] bloques = g.fromJson(users, Bloque[].class);
+        ArrayList<Bloque> newBloques = new ArrayList();
+        for (Bloque b : bloques) {
+            if (b.id.equals(bl.id)) {
+                newBloques.add(bl);
+            } else {
+                newBloques.add(b);
+            }
+        }
+        FileUtils.overwriteFile("bloques.json", g.toJson(newBloques));
+    }
 }

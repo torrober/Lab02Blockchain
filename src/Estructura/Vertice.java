@@ -50,5 +50,14 @@ public class Vertice {
     public Usuario getUsuario() {
         return u;
     }
+
+    public void setU(Usuario u) {
+        this.u = u;
+    }
+
+    public void setB(Bloque b) {
+        this.b = b;
+    }
+    
     
 }

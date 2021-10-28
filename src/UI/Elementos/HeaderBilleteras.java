@@ -5,10 +5,15 @@
  */
 package UI.Elementos;
 
+import Estructura.Grafo;
+import Estructura.Vertice;
 import Objetos.Billetera;
 import Objetos.Usuario;
 import UI.NewTransaction;
 import com.kingaspx.toast.util.Toast;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +23,15 @@ import javax.swing.JOptionPane;
 public class HeaderBilleteras extends javax.swing.JPanel {
 
     private Usuario a;
+    private Grafo g;
 
     /**
      * Creates new form Header
      */
-    public HeaderBilleteras(Usuario u) {
+    public HeaderBilleteras(Usuario u, Grafo g) {
         initComponents();
         this.a = u;
+        this.g = g;
     }
 
     /**
@@ -112,6 +119,13 @@ public class HeaderBilleteras extends javax.swing.JPanel {
                     "Nueva billetera creada con éxito!",
                     "ID: " + newBilletera.id + " Saldo: " + newBilletera.saldo,
                     Toast.LONG_DELAY);
+            try {
+                Usuario.overwriteUser(a);
+                Vertice currUser = g.getVerticeFromUsuario(a);
+                currUser.setU(a);
+            } catch (IOException ex) {
+                Logger.getLogger(HeaderBilleteras.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_tROutlineButton1ActionPerformed
 

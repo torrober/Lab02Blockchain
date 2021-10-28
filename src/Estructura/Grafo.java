@@ -81,7 +81,7 @@ public class Grafo {
     public Vertice getVerticeFromBloque(Bloque b) {
         for (Vertice v : vertices) {
             if (v.getBloque() != null) {
-                if (v.getBloque().equals(b.id)) {
+                if (v.getBloque().id.equals(b.id)) {
                     return v;
                 }
             }

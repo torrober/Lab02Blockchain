@@ -381,7 +381,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void menuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem1MouseClicked
         // TODO add your handling code here:
-        addPanel(new MyWallets(u));
+        addPanel(new MyWallets(u, g));
     }//GEN-LAST:event_menuItem1MouseClicked
 
     /**

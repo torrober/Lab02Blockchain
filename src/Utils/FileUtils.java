@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import Estructura.Bloque;
 import Objetos.Transaccion;
 import Objetos.Usuario;
 import com.google.gson.Gson;
@@ -50,8 +51,7 @@ public class FileUtils {
         }
         return success;
     }
-    
-        public static boolean WriteTransactionToFile(Transaccion t) {
+    public static boolean WriteTransactionToFile(Transaccion t) {
         String transaccionfinal = "";
         String nombre = "transacciones.json";
         boolean success = false;
@@ -80,7 +80,35 @@ public class FileUtils {
         }
         return success;
     }
-
+    public static boolean writeBlockToFile(Bloque b){
+        boolean ret = false;
+        String bloquefinal = "";
+        String nombre = "bloques.json";
+        if (!"".equals(readFile(nombre))) {
+            ArrayList<Bloque> blocks = new ArrayList();
+            Gson g = new Gson();     
+            String file = readFile(nombre);
+            System.out.println(file);
+            Bloque[] o = g.fromJson(file, Bloque[].class);
+            for (Bloque bl : o) {
+                blocks.add(bl);
+            }
+            blocks.add(b);
+            bloquefinal = g.toJson(blocks);
+        } else {
+            Gson g = new Gson();
+            Bloque[] firstBlock = new Bloque[1];
+            firstBlock[0] = b;
+            bloquefinal = g.toJson(firstBlock);
+        }
+        try {
+            overwriteFile(nombre,bloquefinal);
+            ret = true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return ret;
+    }
     public static void overwriteFile(String route, String string) throws IOException {
         File f;
         FileWriter fw;

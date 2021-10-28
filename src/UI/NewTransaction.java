@@ -12,6 +12,7 @@ import Objetos.Billetera;
 import Objetos.Transaccion;
 import Objetos.Usuario;
 import static Objetos.Usuario.getUsuarioByWalletID;
+import Utils.FileUtils;
 import com.kingaspx.toast.util.Toast;
 import java.util.Base64;
 import java.awt.Color;
@@ -33,6 +34,7 @@ public class NewTransaction extends javax.swing.JFrame {
     private int mouseX;
     private Usuario a;
     private Grafo g;
+    private Transaccion first;
 
     /**
      * Creates new form NewTransaction
@@ -41,6 +43,7 @@ public class NewTransaction extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         this.a = u;
+        this.g = g;
         for (Billetera b : u.getBilleteras()) {
             jComboBox1.addItem(b.id);
         }
@@ -237,56 +240,72 @@ public class NewTransaction extends javax.swing.JFrame {
 
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
 
-        try {
-            ArrayList<Billetera> billeteras = a.getBilleteras();
-            Billetera remitente = null;
-            Billetera destinatario = null;
-            for (Billetera b : billeteras) {
-                if (b.id.equals(jComboBox1.getSelectedItem().toString())) {
-                    remitente = b;
-                }
+        ArrayList<Billetera> billeteras = a.getBilleteras();
+        Billetera remitente = null;
+        Billetera destinatario = null;
+        for (Billetera b : billeteras) {
+            if (b.id.equals(jComboBox1.getSelectedItem().toString())) {
+                remitente = b;
             }
-            Usuario destinatarioUser = Usuario.getUsuarioByWalletID(tRTextField1.getText());
-            System.out.println(destinatarioUser.getNickname());
-            for (Billetera b : destinatarioUser.getBilleteras()) {
-                if (b.id.equals(tRTextField1.getText())) {
-                    destinatario = b;
-                }
+        }
+        Usuario destinatarioUser = Usuario.getUsuarioByWalletID(tRTextField1.getText());
+        System.out.println(destinatarioUser.getNickname());
+        for (Billetera b : destinatarioUser.getBilleteras()) {
+            if (b.id.equals(tRTextField1.getText())) {
+                destinatario = b;
             }
-            System.out.println(destinatarioUser.getNickname());
-            if (remitente != null && destinatario != null) {
+        }
+        System.out.println(destinatarioUser.getNickname());
+        if (remitente != null && destinatario != null) {
+            try {
                 remitente.setSaldo(remitente.saldo - Double.parseDouble(tRTextField2.getText()));
                 System.out.println(remitente.saldo);
                 destinatario.setSaldo(destinatario.saldo + Double.parseDouble(tRTextField2.getText()));
                 Transaccion tr = new Transaccion(remitente.id, destinatario.id, Double.parseDouble(tRTextField2.getText()));
+                first = tr;
                 if (g.getUltimoBloque() != null) {
                     if (!g.getUltimoBloque().addTransaction(tr)) {
                         Bloque ant = g.getUltimoBloque();
                         Bloque b = new Bloque(g.getUltimoBloque().id);
                         b.addTransaction(tr);
                         g.addVerticeBloque(b);
-                        g.addArista(g.getVerticeFromBloque(ant),g.getVerticeFromBloque(b),0);
+                        g.addArista(g.getVerticeFromBloque(ant), g.getVerticeFromBloque(b), 0);
+                        FileUtils.writeBlockToFile(b);
                     } else {
                         g.getUltimoBloque().addTransaction(tr);
+                        Bloque.overwriteTransaction(g.getUltimoBloque());
                     }
                 } else {
                     //primer bloque
-                    Bloque b = new Bloque("");
+                    Bloque b;
+                    b = new Bloque("");
                     b.addTransaction(tr);
                     g.addVerticeBloque(b);
                     Vertice inicio = g.getVertice("SwingPay");
                     Vertice fin = g.getVerticeFromBloque(b);
                     g.addArista(inicio, fin, 0);
+                    FileUtils.writeBlockToFile(b);
                 }
-            } else {
+                Usuario.overwriteUser(a);
+                Usuario.overwriteUser(destinatarioUser);
+                Vertice recipienteVertex = g.getVerticeFromUsuario(a);
+                recipienteVertex.setU(a);
+                Vertice destVertice = g.getVerticeFromUsuario(destinatarioUser);
+                destVertice.setU(destinatarioUser);
+            } catch (NullPointerException ex) {
+                Bloque b;
+                b = new Bloque("");
+                b.addTransaction(first);
+                g.addVerticeBloque(b);
+                Vertice inicio = g.getVertice("SwingPay");
+                Vertice fin = g.getVerticeFromBloque(b);
+                g.addArista(inicio, fin, 0);
+                FileUtils.writeBlockToFile(b);
+            } catch (IOException ex) {
+                System.out.println(ex);
             }
-        } catch (Exception ex) {
-            //System.out.println(ex);
-            new Toast.ToastSuccessful(
-                    "Error",
-                    "Error",
-                    "Verifique Datos",
-                    Toast.LONG_DELAY);
+
+        } else {
         }
     }//GEN-LAST:event_tRButton1ActionPerformed
 

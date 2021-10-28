@@ -34,6 +34,7 @@ public class BlockChain {
     public static void main(String[] args) throws IOException {
         Grafo grafo = new Grafo();
         grafo.addVertice("SwingPay");
+
         //lee los usuarios en el archivo
         String file = readFile("usuarios.json");
         if (file != "") {
@@ -45,17 +46,36 @@ public class BlockChain {
                     grafo.addVerticeUsuario(user);
                     Vertice desp = grafo.getVerticeFromUsuario(user);
                     grafo.addArista(ant, desp, 0);
-                    System.out.println("Grafo añadido");
+                    System.out.println("Vertice añadido");
                 } catch (NullPointerException ex) {
                     Vertice ant = grafo.getVertice("SwingPay");
-                    System.out.println("1er grafo");
+                    System.out.println("1er Ver");
                     grafo.addVerticeUsuario(user);
                     Vertice desp = grafo.getVerticeFromUsuario(user);
                     grafo.addArista(ant, desp, 0);
-                    System.out.println("Grafo añadido");
-                    
+                    System.out.println("Vertice añadido");
                 }
-
+            }
+        }
+        String fileBloques = readFile("bloques.json");
+        if (fileBloques != "") {
+            Gson g = new Gson();
+            Bloque[] b = g.fromJson(fileBloques, Bloque[].class);
+            for (Bloque bl : b) {
+                try {
+                    Vertice ant = grafo.getVerticeFromBloque(grafo.getUltimoBloque());
+                    grafo.addVerticeBloque(bl);
+                    Vertice desp = grafo.getVerticeFromBloque(bl);
+                    grafo.addArista(ant, desp, 0);
+                    System.out.println("Ver añadido Bloque");
+                } catch (NullPointerException ex) {
+                    Vertice ant = grafo.getVertice("SwingPay");
+                    System.out.println("1er Ver");
+                    grafo.addVerticeBloque(bl);
+                    Vertice desp = grafo.getVerticeFromBloque(bl);
+                    grafo.addArista(ant, desp, 0);
+                    System.out.println("Ver añadido");
+                }
             }
         }
         try {

@@ -5,6 +5,7 @@
  */
 package UI.Panels;
 
+import Estructura.Grafo;
 import Objetos.Billetera;
 import Objetos.Usuario;
 import UI.Elementos.BilleteraInfo;
@@ -21,10 +22,10 @@ public class MyWallets extends javax.swing.JPanel {
     /**
      * Creates new form MyWallets
      */
-    public MyWallets(Usuario u) {
+    public MyWallets(Usuario u, Grafo g) {
         initComponents();
         jPanel1.setLayout(new MigLayout("fillx"));
-        jPanel1.add(new HeaderBilleteras(u), "wrap, w 572");
+        jPanel1.add(new HeaderBilleteras(u, g), "wrap, w 572");
         jPanel1.setBackground(Color.white);
         jPanel1.repaint();
         jPanel1.revalidate();
