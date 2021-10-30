@@ -3,7 +3,9 @@ package Estructura;
 import Objetos.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
+import processing.core.PApplet;
+import processing.core.PImage;
+import processing.core.PSurface;
 /**
  *
  * @author guest
@@ -125,4 +127,21 @@ public class Grafo {
             return usuariosAux.get(ultimoElemPos);
         }
     }
+
+    public ArrayList<Arista> getAristas() {
+        return aristas;
+    }
+
+    public ArrayList<Vertice> getVertices() {
+        return vertices;
+    }
+
+    public ArrayList<Bloque> getBloquesAux() {
+        return bloquesAux;
+    }
+
+    public ArrayList<Usuario> getUsuariosAux() {
+        return usuariosAux;
+    }
+    
 }

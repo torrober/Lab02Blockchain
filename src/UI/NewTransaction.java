@@ -257,54 +257,58 @@ public class NewTransaction extends javax.swing.JFrame {
         }
         System.out.println(destinatarioUser.getNickname());
         if (remitente != null && destinatario != null) {
-            try {
-                remitente.setSaldo(remitente.saldo - Double.parseDouble(tRTextField2.getText()));
-                System.out.println(remitente.saldo);
-                destinatario.setSaldo(destinatario.saldo + Double.parseDouble(tRTextField2.getText()));
-                Transaccion tr = new Transaccion(remitente.id, destinatario.id, Double.parseDouble(tRTextField2.getText()));
-                first = tr;
-                if (g.getUltimoBloque() != null) {
-                    if (!g.getUltimoBloque().addTransaction(tr)) {
-                        Bloque ant = g.getUltimoBloque();
-                        Bloque b = new Bloque(g.getUltimoBloque().id);
+            if (remitente.getSaldo() >= Double.parseDouble(tRTextField2.getText())) {
+                try {
+                    remitente.setSaldo(remitente.saldo - Double.parseDouble(tRTextField2.getText()));
+                    System.out.println(remitente.saldo);
+                    destinatario.setSaldo(destinatario.saldo + Double.parseDouble(tRTextField2.getText()));
+                    Transaccion tr = new Transaccion(remitente.id, destinatario.id, Double.parseDouble(tRTextField2.getText()));
+                    first = tr;
+                    if (g.getUltimoBloque() != null) {
+                        if (!g.getUltimoBloque().addTransaction(tr)) {
+                            Bloque ant = g.getUltimoBloque();
+                            Bloque b = new Bloque(g.getUltimoBloque().id);
+                            b.addTransaction(tr);
+                            g.addVerticeBloque(b);
+                            g.addArista(g.getVerticeFromBloque(ant), g.getVerticeFromBloque(b), 0);
+                            FileUtils.writeBlockToFile(b);
+                        } else {
+                            g.getUltimoBloque().addTransaction(tr);
+                            Bloque.overwriteTransaction(g.getUltimoBloque());
+                        }
+                    } else {
+                        //primer bloque
+                        Bloque b;
+                        b = new Bloque("");
                         b.addTransaction(tr);
                         g.addVerticeBloque(b);
-                        g.addArista(g.getVerticeFromBloque(ant), g.getVerticeFromBloque(b), 0);
+                        Vertice inicio = g.getVertice("SwingPay");
+                        Vertice fin = g.getVerticeFromBloque(b);
+                        g.addArista(inicio, fin, 0);
                         FileUtils.writeBlockToFile(b);
-                    } else {
-                        g.getUltimoBloque().addTransaction(tr);
-                        Bloque.overwriteTransaction(g.getUltimoBloque());
                     }
-                } else {
-                    //primer bloque
-                    Bloque b;
-                    b = new Bloque("");
-                    b.addTransaction(tr);
-                    g.addVerticeBloque(b);
-                    Vertice inicio = g.getVertice("SwingPay");
-                    Vertice fin = g.getVerticeFromBloque(b);
-                    g.addArista(inicio, fin, 0);
-                    FileUtils.writeBlockToFile(b);
+                    Usuario.overwriteUser(a);
+                    Usuario.overwriteUser(destinatarioUser);
+                    Vertice recipienteVertex = g.getVerticeFromUsuario(a);
+                    recipienteVertex.setU(a);
+                    Vertice destVertice = g.getVerticeFromUsuario(destinatarioUser);
+                    destVertice.setU(destinatarioUser);
+                    this.dispose();
+                    new Toast.ToastSuccessful(
+                            "Exito",
+                            "Exito",
+                            "Transaccion exitosa.",
+                            Toast.LONG_DELAY);
+                } catch (IOException ex) {
+                    System.out.println(ex);
                 }
-                Usuario.overwriteUser(a);
-                Usuario.overwriteUser(destinatarioUser);
-                Vertice recipienteVertex = g.getVerticeFromUsuario(a);
-                recipienteVertex.setU(a);
-                Vertice destVertice = g.getVerticeFromUsuario(destinatarioUser);
-                destVertice.setU(destinatarioUser);
-            } catch (NullPointerException ex) {
-                Bloque b;
-                b = new Bloque("");
-                b.addTransaction(first);
-                g.addVerticeBloque(b);
-                Vertice inicio = g.getVertice("SwingPay");
-                Vertice fin = g.getVerticeFromBloque(b);
-                g.addArista(inicio, fin, 0);
-                FileUtils.writeBlockToFile(b);
-            } catch (IOException ex) {
-                System.out.println(ex);
+            } else {
+                new Toast.ToastSuccessful(
+                        "Error",
+                        "Error",
+                        "No le alcanza",
+                        Toast.LONG_DELAY);
             }
-
         } else {
         }
     }//GEN-LAST:event_tRButton1ActionPerformed

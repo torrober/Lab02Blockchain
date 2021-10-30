@@ -14,12 +14,6 @@ import UI.Panels.MyWallets;
 import UI.Panels.Transactions;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -73,6 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
         menuItem7 = new UI.Elementos.MenuItem();
         menuItem8 = new UI.Elementos.MenuItem();
         menuItem1 = new UI.Elementos.MenuItem();
+        menuItem2 = new UI.Elementos.MenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -153,6 +148,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        menuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/icons8_collaborating_in_circle_24px_1.png"))); // NOI18N
+        menuItem2.setItemName("Nuestra Red");
+        menuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuItem2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout tRShadowPane1Layout = new javax.swing.GroupLayout(tRShadowPane1);
         tRShadowPane1.setLayout(tRShadowPane1Layout);
         tRShadowPane1Layout.setHorizontalGroup(
@@ -165,7 +168,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(menuItem6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuItem8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(menuItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuItem2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tRShadowPane1Layout.setVerticalGroup(
@@ -183,7 +187,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(menuItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuItem8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -384,6 +390,12 @@ public class MainWindow extends javax.swing.JFrame {
         addPanel(new MyWallets(u, g));
     }//GEN-LAST:event_menuItem1MouseClicked
 
+    private void menuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuItem2MouseClicked
+        // TODO add your handling code here:
+        PSketch p = new PSketch(g);
+        p.main();
+    }//GEN-LAST:event_menuItem2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -398,6 +410,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private UI.Elementos.MenuItem menuItem1;
+    private UI.Elementos.MenuItem menuItem2;
     private UI.Elementos.MenuItem menuItem5;
     private UI.Elementos.MenuItem menuItem6;
     private UI.Elementos.MenuItem menuItem7;

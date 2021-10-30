@@ -33,7 +33,6 @@ public class History extends javax.swing.JPanel {
         jPanel1.repaint();
         jPanel1.revalidate();
         String file1 = readFile("transacciones.json");
-
         if (file1 != "") {
             Gson g = new Gson();
             Transaccion[] o = g.fromJson(file1, Transaccion[].class);

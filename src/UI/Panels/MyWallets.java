@@ -30,7 +30,7 @@ public class MyWallets extends javax.swing.JPanel {
         jPanel1.repaint();
         jPanel1.revalidate();
         for (Billetera b : u.getBilleteras()) {
-            addBilleteras(new BilleteraInfo(b.saldo, b.id));
+            addBilleteras(new BilleteraInfo(b.saldo, b.id, b));
         }
     }
 

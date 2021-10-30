@@ -17,6 +17,7 @@ import static Objetos.Sexo.Masculino;
 import static Objetos.TipoDoc.cedCiudadania;
 import Objetos.Usuario;
 import UI.Login;
+import UI.PSketch;
 import static Utils.FileUtils.readFile;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.google.gson.Gson;
@@ -40,42 +41,38 @@ public class BlockChain {
         if (file != "") {
             Gson g = new Gson();
             Usuario[] o = g.fromJson(file, Usuario[].class);
+            int i = 0;
+            Vertice ant = null;
             for (Usuario user : o) {
-                try {
-                    Vertice ant = grafo.getVerticeFromUsuario(grafo.getLastUsuario());
+                    if(i == 0) {
+                        ant = grafo.getVertice("SwingPay");
+                    } else {
+                        ant = grafo.getVerticeFromUsuario(grafo.getLastUsuario());
+                    }
                     grafo.addVerticeUsuario(user);
                     Vertice desp = grafo.getVerticeFromUsuario(user);
                     grafo.addArista(ant, desp, 0);
                     System.out.println("Vertice añadido");
-                } catch (NullPointerException ex) {
-                    Vertice ant = grafo.getVertice("SwingPay");
-                    System.out.println("1er Ver");
-                    grafo.addVerticeUsuario(user);
-                    Vertice desp = grafo.getVerticeFromUsuario(user);
-                    grafo.addArista(ant, desp, 0);
-                    System.out.println("Vertice añadido");
-                }
+                
             }
         }
         String fileBloques = readFile("bloques.json");
+        Vertice ant = null;
         if (fileBloques != "") {
             Gson g = new Gson();
             Bloque[] b = g.fromJson(fileBloques, Bloque[].class);
+            int i = 0;
             for (Bloque bl : b) {
-                try {
-                    Vertice ant = grafo.getVerticeFromBloque(grafo.getUltimoBloque());
+                    if(i == 0) {
+                        ant = grafo.getVertice("SwingPay");
+                    } else {
+                        ant = grafo.getVerticeFromBloque(grafo.getUltimoBloque());
+                    }
                     grafo.addVerticeBloque(bl);
                     Vertice desp = grafo.getVerticeFromBloque(bl);
                     grafo.addArista(ant, desp, 0);
                     System.out.println("Ver añadido Bloque");
-                } catch (NullPointerException ex) {
-                    Vertice ant = grafo.getVertice("SwingPay");
-                    System.out.println("1er Ver");
-                    grafo.addVerticeBloque(bl);
-                    Vertice desp = grafo.getVerticeFromBloque(bl);
-                    grafo.addArista(ant, desp, 0);
-                    System.out.println("Ver añadido");
-                }
+                    i++;
             }
         }
         try {
@@ -86,7 +83,5 @@ public class BlockChain {
         }
         Login m = new Login(grafo);
         m.setVisible(true);
-        //TestFrame t = new TestFrame();
-        //t.setVisible(true);
     }
 }

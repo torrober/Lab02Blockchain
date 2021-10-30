@@ -5,6 +5,8 @@
  */
 package UI.Elementos;
 
+import Objetos.Billetera;
+import UI.SingleBilleteraInfo;
 import UI.WebFrame;
 import java.io.File;
 import java.text.DecimalFormat;
@@ -16,15 +18,17 @@ import java.text.NumberFormat;
  */
 public class BilleteraInfo extends javax.swing.JPanel {
     String billeteraID;
+    Billetera bi;
     /**
      * Creates new form TransferenciaInfo
      */
-    public BilleteraInfo(double valor, String billeteraID) {
+    public BilleteraInfo(double valor, String billeteraID, Billetera b) {
         initComponents();
         jLabel1.setText("Billetera");
         NumberFormat formatter = new DecimalFormat("#0.000");
         jLabel2.setText("$" + formatter.format(valor));
         this.billeteraID = billeteraID;
+        bi = b;
     }
 
     /**
@@ -51,14 +55,14 @@ public class BilleteraInfo extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(112, 112, 112));
-        jLabel1.setText("Transacción - ");
+        jLabel1.setText("Billetera");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(112, 112, 112));
         jLabel2.setText("$10.000");
 
         tRButton1.setBackground(new java.awt.Color(245, 127, 23));
-        tRButton1.setText("Ver historial de billetera");
+        tRButton1.setText("Ver más..");
         tRButton1.setBorderRadius(10);
         tRButton1.setColor(new java.awt.Color(245, 127, 23));
         tRButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,8 +82,8 @@ public class BilleteraInfo extends javax.swing.JPanel {
                 .addGroup(tRShadowPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                .addComponent(tRButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addComponent(tRButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         tRShadowPane1Layout.setVerticalGroup(
@@ -110,6 +114,8 @@ public class BilleteraInfo extends javax.swing.JPanel {
 
     private void tRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tRButton1ActionPerformed
         // TODO add your handling code here:
+        SingleBilleteraInfo b = new SingleBilleteraInfo(bi);
+        b.setVisible(true);
     }//GEN-LAST:event_tRButton1ActionPerformed
 
 

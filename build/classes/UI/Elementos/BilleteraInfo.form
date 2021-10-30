@@ -50,8 +50,8 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="168" max="32767" attributes="0"/>
-                  <Component id="tRButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="227" max="32767" attributes="0"/>
+                  <Component id="tRButton1" min="-2" pref="146" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -90,7 +90,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="70" green="70" red="70" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Transacci&#xf3;n - "/>
+            <Property name="text" type="java.lang.String" value="Billetera"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -109,7 +109,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="17" green="7f" red="f5" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ver historial de billetera"/>
+            <Property name="text" type="java.lang.String" value="Ver m&#xe1;s.."/>
             <Property name="borderRadius" type="int" value="10"/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="17" green="7f" red="f5" type="rgb"/>
